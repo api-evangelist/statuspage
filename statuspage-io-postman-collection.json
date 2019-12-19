@@ -1,0 +1,1569 @@
+{
+    "id": "787c8062a24ee34ea8a314d1b170af1d",
+    "name": "StatusPage.io",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "79c2aef35a3054db80dd7706bcbe82f4",
+            "name": "Get your page profile",
+            "url": "https\/pages\/[page_id].json",
+            "description": "Get your page profile",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "1e84ed2923b39ce7dcf3cf65d2d04d14",
+            "name": "Update your page profile",
+            "url": "https\/pages\/[page_id].json",
+            "description": "Update your page profile",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page[name]",
+                    "description": "name of your page to be displayed",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[url]",
+                    "description": "the website of your page. clicking on your status page image will link here",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[notifications_from_email]",
+                    "description": "if users reply to the incident notifications we send",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[time_zone]",
+                    "description": "time zone to use for your status page display (must be a rails time zone)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[city]",
+                    "description": "city in which your page is headquartered",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[state]",
+                    "description": "state in which your page is headquartered",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[country]",
+                    "description": "country in which your page is headquartered",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[subdomain]",
+                    "description": "subdomain at which to access your status page (your_subdomain.statuspage.io)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[domain]",
+                    "description": "CNAME alias for your status page (point DNS record to hosted.statuspage.io)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[layout]",
+                    "description": "which layout format to use for your status page. one of basic|premium",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[allow_email_subscribers]",
+                    "description": "allow users to subscribe for email updates (t or f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[allow_incident_subscribers]",
+                    "description": "allow users to subscribe to a single incident (t or f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[allow_page_subscribers]",
+                    "description": "allow users to auto",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[allow_sms_subscribers]",
+                    "description": "allow users to subscribe for sms updates (t or f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[hero_cover_url]",
+                    "description": "url of a hero cover image to be placed on your status page",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "premium layout only, 850x315 or 1700x630 is best",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[transactional_logo_url]",
+                    "description": "url of a transactional logo to be placed on your status page",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "basic layout only, 170x45 or 340x90 is best",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_body_background_color]",
+                    "description": "custom css color for your status page body background",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_font_color]",
+                    "description": "custom css color for your status page font",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_light_font_color]",
+                    "description": "custom css color for your status page light font",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_greens]",
+                    "description": "custom css color for your status page greens",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_oranges]",
+                    "description": "custom css color for your status page oranges",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_reds]",
+                    "description": "custom css color for your status page reds",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page[css_yellows]",
+                    "description": "custom css color for your status page yellows",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "13a5e09cf50943487c3be578bd548cd3",
+            "name": "Get a list of all components",
+            "url": "https\/pages\/[page_id]\/components.json",
+            "description": "Get a list of all components",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "3a8b0895443fad1f20eb754013a3d65f",
+            "name": "Create a component",
+            "url": "https\/pages\/[page_id]\/components.json",
+            "description": "Create a component",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "component[name]",
+                    "description": "The name of the component",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "component[description]",
+                    "description": "The description of the component",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "component[group_id]",
+                    "description": "The id of the parent component (optional, only 1 level of nesting)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "a2548f1e468f2c2591174565a3f1658d",
+            "name": "Update a component",
+            "url": "https\/pages\/[page_id]\/components\/[component_id].json",
+            "description": "Update a component",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "component[name]",
+                    "description": "The name of the component",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "component[description]",
+                    "description": "The description of the component",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "component[status]",
+                    "description": "The status, one of operational|degraded_performance|partial_outage|major_outage. To set a 3rd party component back to its official status, pass in a blank string (\"component[status]=\")",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "be808672834ddbf7cb911053cfb8289b",
+            "name": "Delete a component",
+            "url": "https\/pages\/[page_id]\/components\/[component_id].json",
+            "description": "Delete a component",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "889432ddd0d1879d9f5235575088df95",
+            "name": "Get a list of all incidents",
+            "url": "https\/pages\/[page_id]\/incidents.json",
+            "description": "Get a list of all incidents",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "0e64c69b98d837e12faa515a228b127b",
+            "name": "Create a realtime incident",
+            "url": "https\/pages\/[page_id]\/incidents.json",
+            "description": "Create a realtime incident",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "incident[name]",
+                    "description": "The name of the incident",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[status]",
+                    "description": "The status, one of investigating|identified|monitoring|resolved (optional, defaults to investigating if left blank)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[message]",
+                    "description": "The initial message, created as the first incident update (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[wants_twitter_update]",
+                    "description": "Post the new incident to twitter (t or f, defaults to f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[impact_override]",
+                    "description": "Override calculated impact value, one of none|minor|major|critical (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[component_ids]",
+                    "description": "List of components whose subscribers should be notified (only applicable for pages with component subscriptions enabled)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[scheduled_for]",
+                    "description": "time the scheduled maintenance should begin (ISO8601 format)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[scheduled_until]",
+                    "description": "time the scheduled maintenance should end (ISO8601 format)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[scheduled_remind_prior]",
+                    "description": "Remind subscribers 60 minutes before scheduled start (optional, t or f, defaults to f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[scheduled_auto_in_progress]",
+                    "description": "Automatically transition incident to 'In Progress' at start (optional, t or f, defaults to f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[scheduled_auto_completed]",
+                    "description": "Automatically transition incident to 'Completed' at end (optional, t or f, defaults to f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[backfilled]",
+                    "description": "Must be set to t",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[backfill_date]",
+                    "description": "Date of incident in YYYY",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "ac51c90c1d8e31d528b0e83594ef63e2",
+            "name": "Unresolved Only",
+            "url": "https\/pages\/[page_id]\/incidents\/unresolved.json",
+            "description": "Unresolved Only",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "731a24a5f80856966f60f13db4736ec3",
+            "name": "Scheduled Only",
+            "url": "https\/pages\/[page_id]\/incidents\/scheduled.json",
+            "description": "Scheduled Only",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "4fc1b85cab055af9b698eaa715aeb044",
+            "name": "Update an incident (only applies to realtime and scheduled incidents)",
+            "url": "https\/pages\/[page_id]\/incidents\/[incident_id].json",
+            "description": "Update an incident (only applies to realtime and scheduled incidents)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "at the same time to avoid two separate incident updates being generated.",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "ENDPOINT",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "PATCH \/pages\/[page_id]\/incidents\/[incident_id].json",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "MUTABLE",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[name]",
+                    "description": "The name of the incident",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[status]",
+                    "description": "The status, one of investigating|identified|monitoring|resolved (optional, defaults to investigating if left blank)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[message]",
+                    "description": "The initial message, created as the first incident update (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[wants_twitter_update]",
+                    "description": "Post the new incident to twitter (t or f, defaults to f)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[impact_override]",
+                    "description": "Override calculated impact value, one of none|minor|major|critical (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident[component_ids]",
+                    "description": "List of components whose subscribers should be notified (only applicable for pages with component subscriptions enabled)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "c6f494e0c44f341d9760a0beb278ae2c",
+            "name": "Delete an incident",
+            "url": "https\/pages\/[page_id]\/incidents\/[incident_id].json",
+            "description": "Delete an incident",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "b99f894d7106a59aac18fce139bb3ca0",
+            "name": "Tune an Incident Update",
+            "url": "https\/pages\/[page_id]\/incidents\/[incident_id]\/incident_updates\/[incident_update_id].json",
+            "description": "Tune an Incident Update",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "incident_update[body]",
+                    "description": "The body of the incident update (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "incident_update[display_at]",
+                    "description": "The timestamp by which to display the incident update (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "64b7bd33687eb9792443bbeec6388a3e",
+            "name": "Delete a subscriber",
+            "url": "https\/pages\/[page_id]\/subscribers\/[subscriber_id].json",
+            "description": "Delete a subscriber",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "3feebd5ce1e00828774268e8acdc31d0",
+            "name": "Get a list of available public metric providers",
+            "url": "https\/metrics_providers.json",
+            "description": "Get a list of available public metric providers",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "2c7e0ad2ffc7fe8bb710a0816bcad85d",
+            "name": "Get a list of metric providers linked to your page",
+            "url": "https\/pages\/[page_id]\/metrics_providers.json",
+            "description": "Get a list of metric providers linked to your page",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "39c9698f3064d438bd62b0d27aa68bc5",
+            "name": "Get a list of metrics created for a linked metrics provider",
+            "url": "https\/pages\/[page_id]\/metrics_providers\/[metrics_provider_id]\/metrics.json",
+            "description": "Get a list of metrics created for a linked metrics provider",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "3674d36f0cc2956f30ea2e7999ff1970",
+            "name": "Create a custom metric",
+            "url": "https\/pages\/[page_id]\/metrics_providers\/[metrics_provider_id]\/metrics.json",
+            "description": "Create a custom metric",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "1b1bff58bcd9095bcfa3c76a750f7c28",
+            "name": "Submit data for a custom metric",
+            "url": "https\/pages\/[page_id]\/metrics\/[metric_id]\/data.json",
+            "description": "Submit data for a custom metric",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "c2ac8744017dad9e8c7e31ea2d9a1356",
+            "name": "Delete all data for a custom metric",
+            "url": "https\/pages\/[page_id]\/metrics\/[metric_id]\/data.json",
+            "description": "Delete all data for a custom metric",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "4a48105d82828aca3b52c036534f8772",
+            "name": "List users",
+            "url": "https\/organizations\/[organization_id]\/users.json",
+            "description": "List users",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "dcfa86df3dbb97cbb7e859ec4949d86b",
+            "name": "Create a user",
+            "url": "https\/organizations\/[organization_id]\/users.json",
+            "description": "Create a user",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "9c8e5a43d3738ab18a9d06c296c846c7",
+            "name": "Delete a user",
+            "url": "https\/organizations\/[organization_id]\/users\/[user_id].json",
+            "description": "Delete a user",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "e04c21f3c5e4cdeac99d62cf57db45d7",
+            "name": "Retrieve a list of users",
+            "url": "https\/pages\/[page_id]\/page_access_users.json",
+            "description": "Retrieve a list of users",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "email",
+                    "description": "Filter the returned list of users by email address (users must have assigned email addresses)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "7d28d32a700d4fac0198143e6a6173c2",
+            "name": "Create a user who can view your status page",
+            "url": "https\/pages\/[page_id]\/page_access_users.json",
+            "description": "Create a user who can view your status page",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_user[external_login]",
+                    "description": "A concatenated (and possibly hashed) string of login parameters, organized alphabetically by field name.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[email]",
+                    "description": "The email for StatusPage to use to communicate with the user (required if StatusPage manages passwords for you)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[component_ids][]",
+                    "description": "Array of component ids that the created user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[metric_ids][]",
+                    "description": "Array of metric ids that the created user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[page_access_group_ids][]",
+                    "description": "Array of PageAccessGroups (identified by code) that the created user will be a member of",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[subscribe_to_components]",
+                    "description": "A value of 'true' will subscribe the user to notifications for incidents associated with components they can see, this value is optional and defaults to false",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "94084a75287cc0987f074538ae473ef0",
+            "name": "Change information for a user who can view your status page",
+            "url": "https\/pages\/[page_id]\/page_access_users\/[page_access_user_id].json",
+            "description": "Change information for a user who can view your status page",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_user[external_login]",
+                    "description": "A concatenated (and possibly hashed) string of login parameters, organized alphabetically by field name.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[email]",
+                    "description": "The email for StatusPage to use to communicate with the user (required if StatusPage manages passwords for you)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[component_ids][]",
+                    "description": "Array of component ids that the created user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[metric_ids][]",
+                    "description": "Array of metric ids that the created user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_user[page_access_group_ids][]",
+                    "description": "Array of PageAccessGroups (identified by code) that the created user will be a member of",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "9c404cd6cea5d8bdda56618d50b3ed48",
+            "name": "Delete a user who could access your status page",
+            "url": "https\/pages\/[page_id]\/page_access_users\/[page_access_user_id].json",
+            "description": "Delete a user who could access your status page",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "ea11b0192ac7561dbfbe8d64a942b9e6",
+            "name": "Assign components to a page access user (overwrites existing components)",
+            "url": "https\/pages\/[page_id]\/page_access_users\/[page_access_user_id]\/components.json",
+            "description": "Assign components to a page access user (overwrites existing components)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "component_ids[]",
+                    "description": "Array of component ids that the user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "6d9b44e54914759e589fa07d9e2e99d2",
+            "name": "Assign components to a page access user (adds new components to a user)",
+            "url": "https\/pages\/[page_id]\/page_access_users\/[page_access_user_id]\/components.json",
+            "description": "Assign components to a page access user (adds new components to a user)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "component_ids[]",
+                    "description": "Array of component ids that the user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "581d30f88952ea2eb819221fc00148ca",
+            "name": "Remove all components from a page access user",
+            "url": "https\/pages\/[page_id]\/page_access_users\/[page_access_user_id]\/components.json",
+            "description": "Remove all components from a page access user",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "b2d43a12c21905b8ef15f2c65852bcff",
+            "name": "Assign page access users to a component",
+            "url": "https\/pages\/[page_id]\/components\/[component_id]\/page_access_users.json",
+            "description": "Assign page access users to a component",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_user_ids[]",
+                    "description": "Array of page access user ids for users that can access the referenced component",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "debb301cb320ffde23b4b77d56782400",
+            "name": "Remove a component from all page access users",
+            "url": "https\/pages\/[page_id]\/components\/[component_id]\/page_access_users.json",
+            "description": "Remove a component from all page access users",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "7cd4b478baeb789b849687233c3e92dc",
+            "name": "Retrieve a list of groups",
+            "url": "https\/pages\/[page_id]\/page_access_groups.json",
+            "description": "Retrieve a list of groups",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "GET",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "42803a2998a1142ae0e39f062e4958aa",
+            "name": "Create a group that will define what and who can view elements of your status page",
+            "url": "https\/pages\/[page_id]\/page_access_groups.json",
+            "description": "Create a group that will define what and who can view elements of your status page",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_group[name]",
+                    "description": "The name the group (required)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[external_identifier]",
+                    "description": "A unique string that can be used to associate this group with an external group (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[page_access_user_ids][]",
+                    "description": "Array of Page Access User ids that the created group contain",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[component_ids][]",
+                    "description": "Array of component ids that the created group will be able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[metric_ids][]",
+                    "description": "Array of metric ids that the created group will be able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "db37bb59e9a8e86725e9a22c8d33e2a9",
+            "name": "Change information for a group",
+            "url": "https\/pages\/[page_id]\/page_access_groups\/[page_access_group_id].json",
+            "description": "Change information for a group",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_group[name]",
+                    "description": "The name the group (required)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[external_identifier]",
+                    "description": "A unique string that can be used to associate this group with an external group (optional)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[page_access_user_ids][]",
+                    "description": "Array of Page Access User ids that the created group contain",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[component_ids][]",
+                    "description": "Array of component ids that the created group will be able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page_access_group[metric_ids][]",
+                    "description": "Array of metric ids that the created group will be able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "304e6e7295831783a828608923ef22f0",
+            "name": "Delete a group",
+            "url": "https\/pages\/[page_id]\/page_access_groups\/[page_access_group_id].json",
+            "description": "Delete a group",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_group[orphan_mode]",
+                    "description": "specifies what to do with any associated PageAccessUsers that are members of the group. Possible values are: 'destroy' (deletes the users), 'preserve' (unpacks access levels onto each user) and 'empty' (keeps the users but deletes all permissions) (optional, defaults to EMPTY)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "f70999cf3fc503987e5242a46a4e3cd3",
+            "name": "Assign components to a page access group (overwrites existing components)",
+            "url": "https\/pages\/[page_id]\/page_access_groups\/[page_access_group_id]\/components.json",
+            "description": "Assign components to a page access group (overwrites existing components)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "component_ids[]",
+                    "description": "Array of component ids that the user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "1c676c85f604b37e29470448f3b7ad5a",
+            "name": "Assign components to a page access group (adds new components to a group)",
+            "url": "https\/pages\/[page_id]\/page_access_groups\/[page_access_group_id]\/components.json",
+            "description": "Assign components to a page access group (adds new components to a group)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "PATCH",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "component_ids[]",
+                    "description": "Array of component ids that the user will ba able to view",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "458d8c7c9128188e0c2029200e6cdad7",
+            "name": "Remove all components from a page access group",
+            "url": "https\/pages\/[page_id]\/page_access_groups\/[page_access_group_id]\/components.json",
+            "description": "Remove all components from a page access group",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "3ce8df9397e8b611e488247340736a66",
+            "name": "Assign page access groups to a component",
+            "url": "https\/pages\/[page_id]\/components\/[component_id]\/page_access_groups.json",
+            "description": "Assign page access groups to a component",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "POST",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "page_access_group_ids[]",
+                    "description": "Array of page access group ids for groups that can access the referenced component",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        },
+        {
+            "id": "c3ff1aa23f1bcdd749a7e573532c9ea2",
+            "name": "Remove a component from all page access groups",
+            "url": "https\/pages\/[page_id]\/components\/[component_id]\/page_access_groups.json",
+            "description": "Remove a component from all page access groups",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "DELETE",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "787c8062a24ee34ea8a314d1b170af1d",
+            "rawModeData": ""
+        }
+    ]
+}
