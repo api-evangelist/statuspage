@@ -1,0 +1,793 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "StatusPage.io",
+        "description": "",
+        "termsOfService": ""
+    },
+    "servers": [
+        "https"
+    ],
+    "paths": {
+        "\/pages\/[page_id].json": {
+            "GET": {
+                "summary": "Get your page profile",
+                "description": "Get your page profile",
+                "operationId": "GetYourPageProfile",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "PATCH": {
+                "summary": "Update your page profile",
+                "description": "Update your page profile",
+                "operationId": "UpdateYourPageProfile",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page[name]",
+                        "in": "query",
+                        "description": "name of your page to be displayed"
+                    },
+                    {
+                        "name": "page[url]",
+                        "in": "query",
+                        "description": "the website of your page. clicking on your status page image will link here"
+                    },
+                    {
+                        "name": "page[notifications_from_email]",
+                        "in": "query",
+                        "description": "if users reply to the incident notifications we send"
+                    },
+                    {
+                        "name": "page[time_zone]",
+                        "in": "query",
+                        "description": "time zone to use for your status page display (must be a rails time zone)"
+                    },
+                    {
+                        "name": "page[city]",
+                        "in": "query",
+                        "description": "city in which your page is headquartered"
+                    },
+                    {
+                        "name": "page[state]",
+                        "in": "query",
+                        "description": "state in which your page is headquartered"
+                    },
+                    {
+                        "name": "page[country]",
+                        "in": "query",
+                        "description": "country in which your page is headquartered"
+                    },
+                    {
+                        "name": "page[subdomain]",
+                        "in": "query",
+                        "description": "subdomain at which to access your status page (your_subdomain.statuspage.io)"
+                    },
+                    {
+                        "name": "page[domain]",
+                        "in": "query",
+                        "description": "CNAME alias for your status page (point DNS record to hosted.statuspage.io)"
+                    },
+                    {
+                        "name": "page[layout]",
+                        "in": "query",
+                        "description": "which layout format to use for your status page. one of basic|premium"
+                    },
+                    {
+                        "name": "page[allow_email_subscribers]",
+                        "in": "query",
+                        "description": "allow users to subscribe for email updates (t or f)"
+                    },
+                    {
+                        "name": "page[allow_incident_subscribers]",
+                        "in": "query",
+                        "description": "allow users to subscribe to a single incident (t or f)"
+                    },
+                    {
+                        "name": "page[allow_page_subscribers]",
+                        "in": "query",
+                        "description": "allow users to auto"
+                    },
+                    {
+                        "name": "page[allow_sms_subscribers]",
+                        "in": "query",
+                        "description": "allow users to subscribe for sms updates (t or f)"
+                    },
+                    {
+                        "name": "page[hero_cover_url]",
+                        "in": "query",
+                        "description": "url of a hero cover image to be placed on your status page"
+                    },
+                    {
+                        "name": "premium layout only, 850x315 or 1700x630 is best",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "page[transactional_logo_url]",
+                        "in": "query",
+                        "description": "url of a transactional logo to be placed on your status page"
+                    },
+                    {
+                        "name": "basic layout only, 170x45 or 340x90 is best",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "page[css_body_background_color]",
+                        "in": "query",
+                        "description": "custom css color for your status page body background"
+                    },
+                    {
+                        "name": "page[css_font_color]",
+                        "in": "query",
+                        "description": "custom css color for your status page font"
+                    },
+                    {
+                        "name": "page[css_light_font_color]",
+                        "in": "query",
+                        "description": "custom css color for your status page light font"
+                    },
+                    {
+                        "name": "page[css_greens]",
+                        "in": "query",
+                        "description": "custom css color for your status page greens"
+                    },
+                    {
+                        "name": "page[css_oranges]",
+                        "in": "query",
+                        "description": "custom css color for your status page oranges"
+                    },
+                    {
+                        "name": "page[css_reds]",
+                        "in": "query",
+                        "description": "custom css color for your status page reds"
+                    },
+                    {
+                        "name": "page[css_yellows]",
+                        "in": "query",
+                        "description": "custom css color for your status page yellows"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/components.json": {
+            "GET": {
+                "summary": "Get a list of all components",
+                "description": "Get a list of all components",
+                "operationId": "GetAListOfAllComponents",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "POST": {
+                "summary": "Create a component",
+                "description": "Create a component",
+                "operationId": "CreateAComponent",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component[name]",
+                        "in": "query",
+                        "description": "The name of the component"
+                    },
+                    {
+                        "name": "component[description]",
+                        "in": "query",
+                        "description": "The description of the component"
+                    },
+                    {
+                        "name": "component[group_id]",
+                        "in": "query",
+                        "description": "The id of the parent component (optional, only 1 level of nesting)"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/components\/[component_id].json": {
+            "PATCH": {
+                "summary": "Update a component",
+                "description": "Update a component",
+                "operationId": "UpdateAComponent",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component[name]",
+                        "in": "query",
+                        "description": "The name of the component"
+                    },
+                    {
+                        "name": "component[description]",
+                        "in": "query",
+                        "description": "The description of the component"
+                    },
+                    {
+                        "name": "component[status]",
+                        "in": "query",
+                        "description": "The status, one of operational|degraded_performance|partial_outage|major_outage. To set a 3rd party component back to its official status, pass in a blank string (\"component[status]=\")"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Delete a component",
+                "description": "Delete a component",
+                "operationId": "DeleteAComponent",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/incidents.json": {
+            "GET": {
+                "summary": "Get a list of all incidents",
+                "description": "Get a list of all incidents",
+                "operationId": "GetAListOfAllIncidents",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "POST": {
+                "summary": "Create a realtime incident",
+                "description": "Create a realtime incident",
+                "operationId": "CreateARealtimeIncident",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "incident[name]",
+                        "in": "query",
+                        "description": "The name of the incident"
+                    },
+                    {
+                        "name": "incident[status]",
+                        "in": "query",
+                        "description": "The status, one of investigating|identified|monitoring|resolved (optional, defaults to investigating if left blank)"
+                    },
+                    {
+                        "name": "incident[message]",
+                        "in": "query",
+                        "description": "The initial message, created as the first incident update (optional)"
+                    },
+                    {
+                        "name": "incident[wants_twitter_update]",
+                        "in": "query",
+                        "description": "Post the new incident to twitter (t or f, defaults to f)"
+                    },
+                    {
+                        "name": "incident[impact_override]",
+                        "in": "query",
+                        "description": "Override calculated impact value, one of none|minor|major|critical (optional)"
+                    },
+                    {
+                        "name": "incident[component_ids]",
+                        "in": "query",
+                        "description": "List of components whose subscribers should be notified (only applicable for pages with component subscriptions enabled)"
+                    },
+                    {
+                        "name": "incident[scheduled_for]",
+                        "in": "query",
+                        "description": "time the scheduled maintenance should begin (ISO8601 format)"
+                    },
+                    {
+                        "name": "incident[scheduled_until]",
+                        "in": "query",
+                        "description": "time the scheduled maintenance should end (ISO8601 format)"
+                    },
+                    {
+                        "name": "incident[scheduled_remind_prior]",
+                        "in": "query",
+                        "description": "Remind subscribers 60 minutes before scheduled start (optional, t or f, defaults to f)"
+                    },
+                    {
+                        "name": "incident[scheduled_auto_in_progress]",
+                        "in": "query",
+                        "description": "Automatically transition incident to 'In Progress' at start (optional, t or f, defaults to f)"
+                    },
+                    {
+                        "name": "incident[scheduled_auto_completed]",
+                        "in": "query",
+                        "description": "Automatically transition incident to 'Completed' at end (optional, t or f, defaults to f)"
+                    },
+                    {
+                        "name": "incident[backfilled]",
+                        "in": "query",
+                        "description": "Must be set to t"
+                    },
+                    {
+                        "name": "incident[backfill_date]",
+                        "in": "query",
+                        "description": "Date of incident in YYYY"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/incidents\/unresolved.json": {
+            "GET": {
+                "summary": "Unresolved Only",
+                "description": "Unresolved Only",
+                "operationId": "UnresolvedOnly",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/incidents\/scheduled.json": {
+            "GET": {
+                "summary": "Scheduled Only",
+                "description": "Scheduled Only",
+                "operationId": "ScheduledOnly",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/incidents\/[incident_id].json": {
+            "PATCH": {
+                "summary": "Update an incident (only applies to realtime and scheduled incidents)",
+                "description": "Update an incident (only applies to realtime and scheduled incidents)",
+                "operationId": "UpdateAnIncidentOnlyAppliesToRealtimeAndScheduledIncidents",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "at the same time to avoid two separate incident updates being generated.",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "ENDPOINT",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "PATCH \/pages\/[page_id]\/incidents\/[incident_id].json",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "MUTABLE",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "incident[name]",
+                        "in": "query",
+                        "description": "The name of the incident"
+                    },
+                    {
+                        "name": "incident[status]",
+                        "in": "query",
+                        "description": "The status, one of investigating|identified|monitoring|resolved (optional, defaults to investigating if left blank)"
+                    },
+                    {
+                        "name": "incident[message]",
+                        "in": "query",
+                        "description": "The initial message, created as the first incident update (optional)"
+                    },
+                    {
+                        "name": "incident[wants_twitter_update]",
+                        "in": "query",
+                        "description": "Post the new incident to twitter (t or f, defaults to f)"
+                    },
+                    {
+                        "name": "incident[impact_override]",
+                        "in": "query",
+                        "description": "Override calculated impact value, one of none|minor|major|critical (optional)"
+                    },
+                    {
+                        "name": "incident[component_ids]",
+                        "in": "query",
+                        "description": "List of components whose subscribers should be notified (only applicable for pages with component subscriptions enabled)"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Delete an incident",
+                "description": "Delete an incident",
+                "operationId": "DeleteAnIncident",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/incidents\/[incident_id]\/incident_updates\/[incident_update_id].json": {
+            "PATCH": {
+                "summary": "Tune an Incident Update",
+                "description": "Tune an Incident Update",
+                "operationId": "TuneAnIncidentUpdate",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "incident_update[body]",
+                        "in": "query",
+                        "description": "The body of the incident update (optional)"
+                    },
+                    {
+                        "name": "incident_update[display_at]",
+                        "in": "query",
+                        "description": "The timestamp by which to display the incident update (optional)"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/subscribers\/[subscriber_id].json": {
+            "DELETE": {
+                "summary": "Delete a subscriber",
+                "description": "Delete a subscriber",
+                "operationId": "DeleteASubscriber",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/metrics_providers.json": {
+            "GET": {
+                "summary": "Get a list of available public metric providers",
+                "description": "Get a list of available public metric providers",
+                "operationId": "GetAListOfAvailablePublicMetricProviders",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/metrics_providers.json": {
+            "GET": {
+                "summary": "Get a list of metric providers linked to your page",
+                "description": "Get a list of metric providers linked to your page",
+                "operationId": "GetAListOfMetricProvidersLinkedToYourPage",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/metrics_providers\/[metrics_provider_id]\/metrics.json": {
+            "GET": {
+                "summary": "Get a list of metrics created for a linked metrics provider",
+                "description": "Get a list of metrics created for a linked metrics provider",
+                "operationId": "GetAListOfMetricsCreatedForALinkedMetricsProvider",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "POST": {
+                "summary": "Create a custom metric",
+                "description": "Create a custom metric",
+                "operationId": "CreateACustomMetric",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/metrics\/[metric_id]\/data.json": {
+            "POST": {
+                "summary": "Submit data for a custom metric",
+                "description": "Submit data for a custom metric",
+                "operationId": "SubmitDataForACustomMetric",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "DELETE": {
+                "summary": "Delete all data for a custom metric",
+                "description": "Delete all data for a custom metric",
+                "operationId": "DeleteAllDataForACustomMetric",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/organizations\/[organization_id]\/users.json": {
+            "GET": {
+                "summary": "List users",
+                "description": "List users",
+                "operationId": "ListUsers",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "POST": {
+                "summary": "Create a user",
+                "description": "Create a user",
+                "operationId": "CreateAUser",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/organizations\/[organization_id]\/users\/[user_id].json": {
+            "DELETE": {
+                "summary": "Delete a user",
+                "description": "Delete a user",
+                "operationId": "DeleteAUser",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/page_access_users.json": {
+            "GET": {
+                "summary": "Retrieve a list of users",
+                "description": "Retrieve a list of users",
+                "operationId": "RetrieveAListOfUsers",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Filter the returned list of users by email address (users must have assigned email addresses)"
+                    }
+                ]
+            },
+            "POST": {
+                "summary": "Create a user who can view your status page",
+                "description": "Create a user who can view your status page",
+                "operationId": "CreateAUserWhoCanViewYourStatusPage",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_user[external_login]",
+                        "in": "query",
+                        "description": "A concatenated (and possibly hashed) string of login parameters, organized alphabetically by field name."
+                    },
+                    {
+                        "name": "page_access_user[email]",
+                        "in": "query",
+                        "description": "The email for StatusPage to use to communicate with the user (required if StatusPage manages passwords for you)"
+                    },
+                    {
+                        "name": "page_access_user[component_ids][]",
+                        "in": "query",
+                        "description": "Array of component ids that the created user will ba able to view"
+                    },
+                    {
+                        "name": "page_access_user[metric_ids][]",
+                        "in": "query",
+                        "description": "Array of metric ids that the created user will ba able to view"
+                    },
+                    {
+                        "name": "page_access_user[page_access_group_ids][]",
+                        "in": "query",
+                        "description": "Array of PageAccessGroups (identified by code) that the created user will be a member of"
+                    },
+                    {
+                        "name": "page_access_user[subscribe_to_components]",
+                        "in": "query",
+                        "description": "A value of 'true' will subscribe the user to notifications for incidents associated with components they can see, this value is optional and defaults to false"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/page_access_users\/[page_access_user_id].json": {
+            "PATCH": {
+                "summary": "Change information for a user who can view your status page",
+                "description": "Change information for a user who can view your status page",
+                "operationId": "ChangeInformationForAUserWhoCanViewYourStatusPage",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_user[external_login]",
+                        "in": "query",
+                        "description": "A concatenated (and possibly hashed) string of login parameters, organized alphabetically by field name."
+                    },
+                    {
+                        "name": "page_access_user[email]",
+                        "in": "query",
+                        "description": "The email for StatusPage to use to communicate with the user (required if StatusPage manages passwords for you)"
+                    },
+                    {
+                        "name": "page_access_user[component_ids][]",
+                        "in": "query",
+                        "description": "Array of component ids that the created user will ba able to view"
+                    },
+                    {
+                        "name": "page_access_user[metric_ids][]",
+                        "in": "query",
+                        "description": "Array of metric ids that the created user will ba able to view"
+                    },
+                    {
+                        "name": "page_access_user[page_access_group_ids][]",
+                        "in": "query",
+                        "description": "Array of PageAccessGroups (identified by code) that the created user will be a member of"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Delete a user who could access your status page",
+                "description": "Delete a user who could access your status page",
+                "operationId": "DeleteAUserWhoCouldAccessYourStatusPage",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/page_access_users\/[page_access_user_id]\/components.json": {
+            "POST": {
+                "summary": "Assign components to a page access user (overwrites existing components)",
+                "description": "Assign components to a page access user (overwrites existing components)",
+                "operationId": "AssignComponentsToAPageAccessUserOverwritesExistingComponents",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component_ids[]",
+                        "in": "query",
+                        "description": "Array of component ids that the user will ba able to view"
+                    }
+                ]
+            },
+            "PATCH": {
+                "summary": "Assign components to a page access user (adds new components to a user)",
+                "description": "Assign components to a page access user (adds new components to a user)",
+                "operationId": "AssignComponentsToAPageAccessUserAddsNewComponentsToAUser",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component_ids[]",
+                        "in": "query",
+                        "description": "Array of component ids that the user will ba able to view"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Remove all components from a page access user",
+                "description": "Remove all components from a page access user",
+                "operationId": "RemoveAllComponentsFromAPageAccessUser",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/components\/[component_id]\/page_access_users.json": {
+            "POST": {
+                "summary": "Assign page access users to a component",
+                "description": "Assign page access users to a component",
+                "operationId": "AssignPageAccessUsersToAComponent",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_user_ids[]",
+                        "in": "query",
+                        "description": "Array of page access user ids for users that can access the referenced component"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Remove a component from all page access users",
+                "description": "Remove a component from all page access users",
+                "operationId": "RemoveAComponentFromAllPageAccessUsers",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/page_access_groups.json": {
+            "GET": {
+                "summary": "Retrieve a list of groups",
+                "description": "Retrieve a list of groups",
+                "operationId": "RetrieveAListOfGroups",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "POST": {
+                "summary": "Create a group that will define what and who can view elements of your status page",
+                "description": "Create a group that will define what and who can view elements of your status page",
+                "operationId": "CreateAGroupThatWillDefineWhatAndWhoCanViewElementsOfYourStatusPage",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_group[name]",
+                        "in": "query",
+                        "description": "The name the group (required)"
+                    },
+                    {
+                        "name": "page_access_group[external_identifier]",
+                        "in": "query",
+                        "description": "A unique string that can be used to associate this group with an external group (optional)"
+                    },
+                    {
+                        "name": "page_access_group[page_access_user_ids][]",
+                        "in": "query",
+                        "description": "Array of Page Access User ids that the created group contain"
+                    },
+                    {
+                        "name": "page_access_group[component_ids][]",
+                        "in": "query",
+                        "description": "Array of component ids that the created group will be able to view"
+                    },
+                    {
+                        "name": "page_access_group[metric_ids][]",
+                        "in": "query",
+                        "description": "Array of metric ids that the created group will be able to view"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/page_access_groups\/[page_access_group_id].json": {
+            "PATCH": {
+                "summary": "Change information for a group",
+                "description": "Change information for a group",
+                "operationId": "ChangeInformationForAGroup",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_group[name]",
+                        "in": "query",
+                        "description": "The name the group (required)"
+                    },
+                    {
+                        "name": "page_access_group[external_identifier]",
+                        "in": "query",
+                        "description": "A unique string that can be used to associate this group with an external group (optional)"
+                    },
+                    {
+                        "name": "page_access_group[page_access_user_ids][]",
+                        "in": "query",
+                        "description": "Array of Page Access User ids that the created group contain"
+                    },
+                    {
+                        "name": "page_access_group[component_ids][]",
+                        "in": "query",
+                        "description": "Array of component ids that the created group will be able to view"
+                    },
+                    {
+                        "name": "page_access_group[metric_ids][]",
+                        "in": "query",
+                        "description": "Array of metric ids that the created group will be able to view"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Delete a group",
+                "description": "Delete a group",
+                "operationId": "DeleteAGroup",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_group[orphan_mode]",
+                        "in": "query",
+                        "description": "specifies what to do with any associated PageAccessUsers that are members of the group. Possible values are: 'destroy' (deletes the users), 'preserve' (unpacks access levels onto each user) and 'empty' (keeps the users but deletes all permissions) (optional, defaults to EMPTY)"
+                    }
+                ]
+            }
+        },
+        "\/pages\/[page_id]\/page_access_groups\/[page_access_group_id]\/components.json": {
+            "POST": {
+                "summary": "Assign components to a page access group (overwrites existing components)",
+                "description": "Assign components to a page access group (overwrites existing components)",
+                "operationId": "AssignComponentsToAPageAccessGroupOverwritesExistingComponents",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component_ids[]",
+                        "in": "query",
+                        "description": "Array of component ids that the user will ba able to view"
+                    }
+                ]
+            },
+            "PATCH": {
+                "summary": "Assign components to a page access group (adds new components to a group)",
+                "description": "Assign components to a page access group (adds new components to a group)",
+                "operationId": "AssignComponentsToAPageAccessGroupAddsNewComponentsToAGroup",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component_ids[]",
+                        "in": "query",
+                        "description": "Array of component ids that the user will ba able to view"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Remove all components from a page access group",
+                "description": "Remove all components from a page access group",
+                "operationId": "RemoveAllComponentsFromAPageAccessGroup",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/pages\/[page_id]\/components\/[component_id]\/page_access_groups.json": {
+            "POST": {
+                "summary": "Assign page access groups to a component",
+                "description": "Assign page access groups to a component",
+                "operationId": "AssignPageAccessGroupsToAComponent",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "page_access_group_ids[]",
+                        "in": "query",
+                        "description": "Array of page access group ids for groups that can access the referenced component"
+                    }
+                ]
+            },
+            "DELETE": {
+                "summary": "Remove a component from all page access groups",
+                "description": "Remove a component from all page access groups",
+                "operationId": "RemoveAComponentFromAllPageAccessGroups",
+                "deprecated": 0,
+                "parameters": []
+            }
+        }
+    },
+    "components": {
+        "schemas": []
+    }
+}
