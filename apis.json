@@ -1,0 +1,99 @@
+{
+    "name": "StatusPage",
+    "description": "StatusPage.io is the best way for web infrastructure, developer API, and SaaS companies to get set up with their very own status page in minutes",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/18898-statuspage-io.jpg",
+    "tags": [
+        "have api",
+        "monitoring",
+        "relative data",
+        "service api",
+        "streams"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/statuspage\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "StatusPage.io",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/18898-statuspage-io.jpg",
+            "humanURL": "https:\/\/www.statuspage.io\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/statuspage-io.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/statuspage-io-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/statuspage-io-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Authentication",
+            "url": "http:\/\/doers.statuspage.io\/api\/authentication\/"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.statuspage.io"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.statuspage.io\/posts.rss"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/statuspage"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/doers.statuspage.io\/"
+        },
+        {
+            "type": "Email",
+            "url": "hi@statuspage.io"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/statuspage"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.statuspage.io\/pricing"
+        },
+        {
+            "type": "Privacy",
+            "url": "https:\/\/www.statuspage.io\/privacy-policy"
+        },
+        {
+            "type": "Security",
+            "url": "https:\/\/www.statuspage.io\/security"
+        },
+        {
+            "type": "Status",
+            "url": "http:\/\/metastatuspage.com\/"
+        },
+        {
+            "type": "Terms Of Service",
+            "url": "https:\/\/www.statuspage.io\/terms-of-service"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/statuspageio"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.statuspage.io\/"
+        }
+    ]
+}
