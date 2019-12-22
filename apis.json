@@ -9,8 +9,8 @@
         "service api",
         "streams"
     ],
-    "created": "2019-12-19",
-    "modified": "2019-12-19",
+    "created": "2019-12-21",
+    "modified": "2019-12-21",
     "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/statuspage\/master\/apis.json",
     "specificationVersion": "0.14",
     "apis": [
@@ -24,21 +24,25 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/statuspage-io.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/statuspage\/master\/statuspage-io-openapi.json"
                 },
                 {
                     "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/statuspage-io-openapi.json"
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/statuspage-io.json"
                 },
                 {
                     "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/statuspage-io-postman-collection.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/statuspage\/master\/statuspage-io-postman-collection.json"
                 }
             ]
         }
     ],
     "include": [],
     "x-common": [
+        {
+            "type": "APIs.json",
+            "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apis.json"
+        },
         {
             "type": "Authentication",
             "url": "http:\/\/doers.statuspage.io\/api\/authentication\/"
