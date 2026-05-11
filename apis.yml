@@ -1,0 +1,86 @@
+aid: statuspage
+name: Statuspage
+description: >-
+  Statuspage by Atlassian is a hosted status page and incident communication
+  platform that helps companies communicate real-time service status, incident
+  updates, scheduled maintenance, and component health to customers and
+  internal stakeholders. It supports public and private pages, audience-specific
+  pages, subscriber notifications via email, SMS, webhooks, Slack, and Teams,
+  and 150+ third-party component integrations. The Statuspage REST API provides
+  programmatic access to pages, components, incidents, maintenances, metrics,
+  subscribers, and users authenticated with an OAuth-prefixed API key.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Status Page
+  - Incident Communication
+  - Incident Management
+  - Uptime
+  - Reliability
+  - Atlassian
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: statuspage:manage-api
+    name: Statuspage Manage API
+    description: >-
+      REST API for managing Statuspage pages, components, component groups,
+      incidents, incident templates, scheduled maintenances, metrics,
+      subscribers, users, and page access groups. Authentication uses an API
+      key passed in the Authorization header with the literal "OAuth" prefix.
+    humanURL: https://developer.statuspage.io/
+    baseURL: https://api.statuspage.io/v1
+    tags:
+      - Management
+      - Incidents
+      - Components
+      - Subscribers
+      - Metrics
+    properties:
+      - type: Documentation
+        url: https://developer.statuspage.io/
+      - type: API Reference
+        url: https://developer.statuspage.io/
+      - type: Authentication
+        url: https://support.atlassian.com/statuspage/docs/create-and-manage-api-keys/
+  - aid: statuspage:status-api
+    name: Statuspage Status API (v2)
+    description: >-
+      Public, read-only REST API exposed by every Statuspage at /api/v2 that
+      returns current status, components, incidents, maintenances, and uptime
+      data as JSON. Useful for embedding status data in applications.
+    humanURL: https://doers.statuspage.io/api/v2/
+    baseURL: https://[page-id].statuspage.io/api/v2
+    tags:
+      - Status
+      - Public
+      - Read-Only
+    properties:
+      - type: Documentation
+        url: https://doers.statuspage.io/api/v2/
+
+common:
+  - type: Website
+    url: https://www.atlassian.com/software/statuspage
+  - type: Developer Portal
+    url: https://developer.statuspage.io/
+  - type: Documentation
+    url: https://support.atlassian.com/statuspage/
+  - type: Pricing
+    url: https://www.atlassian.com/software/statuspage/pricing
+  - type: Sign Up
+    url: https://www.atlassian.com/software/statuspage/try
+  - type: Login
+    url: https://manage.statuspage.io/login
+  - type: Support
+    url: https://support.atlassian.com/statuspage/
+  - type: Integrations
+    url: https://www.atlassian.com/software/statuspage/integrations
+  - type: Parent Company
+    url: https://www.atlassian.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
