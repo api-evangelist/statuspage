@@ -42,7 +42,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.statuspage.io/
-      - type: API Reference
+      - type: APIReference
         url: https://developer.statuspage.io/
       - type: Authentication
         url: https://support.atlassian.com/statuspage/docs/create-and-manage-api-keys/
@@ -71,7 +71,7 @@ common:
     url: https://support.atlassian.com/statuspage/
   - type: Pricing
     url: https://www.atlassian.com/software/statuspage/pricing
-  - type: Sign Up
+  - type: SignUp
     url: https://www.atlassian.com/software/statuspage/try
   - type: Login
     url: https://manage.statuspage.io/login
