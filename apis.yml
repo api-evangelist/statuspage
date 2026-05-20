@@ -63,6 +63,10 @@ apis:
         url: https://doers.statuspage.io/api/v2/
 
 common:
+  - type: GitHubOrganization
+    url: https://github.com/StatusPage
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/statuspage
   - type: Website
     url: https://www.atlassian.com/software/statuspage
   - type: Developer Portal
