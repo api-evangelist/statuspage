@@ -21,7 +21,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
   - aid: statuspage:manage-api
@@ -61,6 +61,26 @@ apis:
     properties:
       - type: Documentation
         url: https://doers.statuspage.io/api/v2/
+  - aid: statuspage:webhooks
+    name: Statuspage Webhook Notifications
+    description: >-
+      Outbound webhook notifications Statuspage POSTs to subscriber endpoints
+      for component status changes, incident lifecycle updates, and scheduled
+      maintenance lifecycle updates. Subscribers must respond with a 2xx
+      status code within 30 seconds.
+    humanURL: https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
+    tags:
+      - Webhooks
+      - Notifications
+      - Incidents
+      - Components
+      - Scheduled Maintenance
+      - Event-Driven
+    properties:
+      - type: Documentation
+        url: https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
+      - type: AsyncAPI
+        url: https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/asyncapi/statuspage-webhooks-asyncapi.yml
 
 common:
   - type: GitHubOrganization

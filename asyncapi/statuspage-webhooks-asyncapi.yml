@@ -1,0 +1,477 @@
+asyncapi: 2.6.0
+info:
+  title: Statuspage Webhook Notifications
+  version: '1.0.0'
+  description: |-
+    AsyncAPI description of the webhook notifications that Atlassian
+    Statuspage delivers to subscriber endpoints. Statuspage POSTs a JSON
+    body to a customer-configured URL whenever a component changes status
+    or an incident is created/updated. Scheduled maintenances reuse the
+    incident webhook payload (the `incident.scheduled_for` and
+    `incident.scheduled_until` fields are populated; other incident fields
+    such as `incident.status` use the maintenance lifecycle values).
+
+    Source documentation:
+      - Webhook setup and payload samples:
+        https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
+      - Developer portal (REST API for managing webhook subscribers):
+        https://developer.statuspage.io/
+
+    Delivery semantics:
+      - Transport: HTTPS POST with `Content-Type: application/json`.
+      - Endpoint must respond with a 2xx status code within 30 seconds.
+      - One event per HTTP POST.
+      - Slack endpoints are not supported as webhook subscribers; use the
+        dedicated Slack subscription type instead.
+
+    Payload discrimination:
+      Statuspage does not include a `type` field on the webhook body.
+      Subscribers must distinguish payload classes by the top-level key
+      that is present: `component_update` (with a sibling `component`)
+      for component status webhooks, or `incident` for incident and
+      scheduled-maintenance webhooks.
+  contact:
+    name: Atlassian Statuspage Support
+    url: https://support.atlassian.com/statuspage/
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: '{webhookUrl}'
+    protocol: https
+    description: |-
+      Customer-hosted HTTPS endpoint registered as a webhook subscriber
+      on a Statuspage page. The full URL is provided when the subscriber
+      is created (via the dashboard or the REST API) and is the target
+      of every webhook POST for that subscription.
+    variables:
+      webhookUrl:
+        default: https://example.com/statuspage/webhook
+        description: Fully-qualified HTTPS URL of the subscriber endpoint.
+
+channels:
+  /statuspage/webhook:
+    description: |-
+      Single subscriber endpoint that receives every Statuspage webhook
+      event for the subscription. Subscribers should inspect the body
+      to determine whether the payload is a component update, an
+      incident update, or a scheduled maintenance update (incident
+      payload with `scheduled_for`/`scheduled_until` populated).
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveStatuspageWebhook
+      summary: Receive a Statuspage webhook notification
+      description: |-
+        Statuspage POSTs a JSON event to the subscriber endpoint each
+        time a component changes status or an incident (including a
+        scheduled maintenance) is created or updated.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ComponentUpdate'
+          - $ref: '#/components/messages/IncidentUpdate'
+          - $ref: '#/components/messages/ScheduledMaintenanceUpdate'
+
+components:
+  messages:
+    ComponentUpdate:
+      name: ComponentUpdate
+      title: Component status update
+      summary: Dispatched whenever a component's status changes.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ComponentUpdatePayload'
+      examples:
+        - name: ComponentUpdateExample
+          summary: Component transitioning from major_outage to operational
+          payload:
+            meta:
+              unsubscribe: http://statustest.flyingkleinbrothers.com:5000/?unsubscribe=j0vqr9kl3513
+              documentation: http://doers.statuspage.io/customer-notifications/webhooks/
+            page:
+              id: j2mfxwj97wnj
+              status_indicator: major
+              status_description: Partial System Outage
+            component_update:
+              created_at: '2013-05-29T21:32:28Z'
+              new_status: operational
+              old_status: major_outage
+              id: k7730b5v92bv
+              component_id: rb5wq1dczvbm
+            component:
+              created_at: '2013-05-29T21:32:28Z'
+              id: rb5wq1dczvbm
+              name: Some Component
+              status: operational
+
+    IncidentUpdate:
+      name: IncidentUpdate
+      title: Incident update
+      summary: Dispatched whenever an incident is created or updated.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/IncidentUpdatePayload'
+      examples:
+        - name: IncidentUpdateExample
+          summary: Incident transitioning into monitoring state
+          payload:
+            meta:
+              unsubscribe: http://statustest.flyingkleinbrothers.com:5000/?unsubscribe=j0vqr9kl3513
+              documentation: http://doers.statuspage.io/customer-notifications/webhooks/
+            page:
+              id: j2mfxwj97wnj
+              status_indicator: critical
+              status_description: Major System Outage
+            incident:
+              backfilled: false
+              created_at: '2013-05-29T15:08:51-06:00'
+              impact: critical
+              impact_override: null
+              monitoring_at: '2013-05-29T16:07:53-06:00'
+              postmortem_body: null
+              postmortem_body_last_updated_at: null
+              postmortem_ignored: false
+              postmortem_notified_subscribers: false
+              postmortem_notified_twitter: false
+              postmortem_published_at: null
+              resolved_at: null
+              scheduled_auto_transition: false
+              scheduled_for: null
+              scheduled_remind_prior: false
+              scheduled_reminded_at: null
+              scheduled_until: null
+              shortlink: http://j.mp/18zyDQx
+              status: monitoring
+              updated_at: '2013-05-29T16:30:35-06:00'
+              id: lbkhbwn21v5q
+              organization_id: j2mfxwj97wnj
+              name: Virginia Is Down
+              incident_updates:
+                - body: A fix has been implemented and we are monitoring the results.
+                  created_at: '2013-05-29T16:07:53-06:00'
+                  display_at: '2013-05-29T16:07:53-06:00'
+                  status: monitoring
+                  twitter_updated_at: null
+                  updated_at: '2013-05-29T16:09:09-06:00'
+                  wants_twitter_update: false
+                  id: drfcwbnpxnr6
+                  incident_id: lbkhbwn21v5q
+                - body: We are waiting for the cloud to come back online and will update when we have further information
+                  created_at: '2013-05-29T15:18:51-06:00'
+                  display_at: '2013-05-29T15:18:51-06:00'
+                  status: identified
+                  twitter_updated_at: null
+                  updated_at: '2013-05-29T15:28:51-06:00'
+                  wants_twitter_update: false
+                  id: 2rryghr4qgrh
+                  incident_id: lbkhbwn21v5q
+                - body: The cloud, located in Norther Virginia, has once again gone the way of the dodo.
+                  created_at: '2013-05-29T15:08:51-06:00'
+                  display_at: '2013-05-29T15:08:51-06:00'
+                  status: investigating
+                  twitter_updated_at: null
+                  updated_at: '2013-05-29T15:28:51-06:00'
+                  wants_twitter_update: false
+                  id: qbbsfhy5s9kk
+                  incident_id: lbkhbwn21v5q
+
+    ScheduledMaintenanceUpdate:
+      name: ScheduledMaintenanceUpdate
+      title: Scheduled maintenance update
+      summary: |-
+        Dispatched for scheduled maintenance lifecycle events. Statuspage
+        reuses the incident webhook envelope; the maintenance is
+        identified by non-null `incident.scheduled_for` and
+        `incident.scheduled_until` timestamps, and `incident.status`
+        carries the maintenance lifecycle value (`scheduled`,
+        `in_progress`, `verifying`, or `completed`).
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/IncidentUpdatePayload'
+
+  schemas:
+    Meta:
+      type: object
+      description: Notification metadata included on every webhook payload.
+      properties:
+        unsubscribe:
+          type: string
+          format: uri
+          description: URL the recipient can use to unsubscribe from notifications.
+        documentation:
+          type: string
+          format: uri
+          description: Link to Statuspage's webhook documentation.
+
+    Page:
+      type: object
+      description: The Statuspage page that produced the notification.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the page.
+        status_indicator:
+          type: string
+          description: Overall status indicator of the page at the time of dispatch.
+          enum:
+            - none
+            - minor
+            - major
+            - critical
+            - maintenance
+        status_description:
+          type: string
+          description: Human-readable description of the overall page status.
+
+    ComponentUpdate:
+      type: object
+      description: |-
+        The component-update record that triggered the webhook (the
+        transition between an old and new component status).
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the component update record.
+        component_id:
+          type: string
+          description: Identifier of the component whose status changed.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the component update was recorded.
+        old_status:
+          type: string
+          description: Previous status of the component.
+          enum:
+            - operational
+            - under_maintenance
+            - degraded_performance
+            - partial_outage
+            - major_outage
+        new_status:
+          type: string
+          description: New status of the component.
+          enum:
+            - operational
+            - under_maintenance
+            - degraded_performance
+            - partial_outage
+            - major_outage
+
+    Component:
+      type: object
+      description: Snapshot of the component after the status change.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the component.
+        name:
+          type: string
+          description: Display name of the component.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the component was created.
+        status:
+          type: string
+          description: Current status of the component after the update.
+          enum:
+            - operational
+            - under_maintenance
+            - degraded_performance
+            - partial_outage
+            - major_outage
+
+    IncidentUpdateRecord:
+      type: object
+      description: |-
+        Individual update appended to an incident's `incident_updates`
+        array. Each record represents one message posted by the team
+        during the incident's lifecycle.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the incident update record.
+        incident_id:
+          type: string
+          description: Identifier of the parent incident.
+        body:
+          type: string
+          description: Free-form text of the update.
+        status:
+          type: string
+          description: |-
+            Lifecycle status reported with this update. Realtime incidents
+            use `investigating`, `identified`, `monitoring`, and `resolved`;
+            scheduled maintenances use `scheduled`, `in_progress`,
+            `verifying`, and `completed`.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when this update was created.
+        display_at:
+          type: string
+          format: date-time
+          description: Timestamp used when displaying this update on the page.
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when this update record was last modified.
+        wants_twitter_update:
+          type: boolean
+          description: Whether the team requested that this update be posted to Twitter.
+        twitter_updated_at:
+          type: [string, 'null']
+          format: date-time
+          description: Timestamp when the update was posted to Twitter, if applicable.
+
+    Incident:
+      type: object
+      description: |-
+        Snapshot of the incident (or scheduled maintenance) after the
+        change that triggered the webhook.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the incident.
+        organization_id:
+          type: string
+          description: Identifier of the owning page/organization.
+        name:
+          type: string
+          description: Display name of the incident.
+        status:
+          type: string
+          description: |-
+            Current lifecycle status. Realtime incidents use
+            `investigating`, `identified`, `monitoring`, `resolved`,
+            and `postmortem`; scheduled maintenances use `scheduled`,
+            `in_progress`, `verifying`, and `completed`.
+        impact:
+          type: string
+          description: Computed impact level of the incident.
+          enum:
+            - none
+            - minor
+            - major
+            - critical
+            - maintenance
+        impact_override:
+          type: [string, 'null']
+          description: Manually-set impact level, or null if not overridden.
+        shortlink:
+          type: string
+          format: uri
+          description: Shortened URL to the incident's public page.
+        backfilled:
+          type: boolean
+          description: Whether the incident was created via the backfill workflow.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the incident was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the incident was last updated.
+        monitoring_at:
+          type: [string, 'null']
+          format: date-time
+          description: Timestamp when the incident entered the monitoring state.
+        resolved_at:
+          type: [string, 'null']
+          format: date-time
+          description: Timestamp when the incident was resolved.
+        scheduled_for:
+          type: [string, 'null']
+          format: date-time
+          description: |-
+            Scheduled start time for a scheduled maintenance. Null for
+            realtime incidents.
+        scheduled_until:
+          type: [string, 'null']
+          format: date-time
+          description: |-
+            Scheduled end time for a scheduled maintenance. Null for
+            realtime incidents.
+        scheduled_auto_transition:
+          type: boolean
+          description: |-
+            Whether the scheduled maintenance should auto-transition
+            between lifecycle states.
+        scheduled_remind_prior:
+          type: boolean
+          description: Whether subscribers should be reminded ahead of the maintenance.
+        scheduled_reminded_at:
+          type: [string, 'null']
+          format: date-time
+          description: Timestamp when the scheduled reminder was sent.
+        postmortem_body:
+          type: [string, 'null']
+          description: Body of the incident postmortem, if published.
+        postmortem_body_last_updated_at:
+          type: [string, 'null']
+          format: date-time
+          description: Timestamp when the postmortem body was last updated.
+        postmortem_ignored:
+          type: boolean
+          description: Whether the postmortem step was explicitly skipped.
+        postmortem_notified_subscribers:
+          type: boolean
+          description: Whether subscribers were notified about the postmortem.
+        postmortem_notified_twitter:
+          type: boolean
+          description: Whether the postmortem was announced on Twitter.
+        postmortem_published_at:
+          type: [string, 'null']
+          format: date-time
+          description: Timestamp when the postmortem was published.
+        incident_updates:
+          type: array
+          description: Chronological list of updates posted on the incident.
+          items:
+            $ref: '#/components/schemas/IncidentUpdateRecord'
+
+    ComponentUpdatePayload:
+      type: object
+      description: |-
+        Body Statuspage POSTs when a component changes status. Contains
+        the page snapshot, the `component_update` transition record,
+        and the post-change `component` snapshot.
+      required:
+        - meta
+        - page
+        - component_update
+        - component
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        page:
+          $ref: '#/components/schemas/Page'
+        component_update:
+          $ref: '#/components/schemas/ComponentUpdate'
+        component:
+          $ref: '#/components/schemas/Component'
+
+    IncidentUpdatePayload:
+      type: object
+      description: |-
+        Body Statuspage POSTs when an incident or scheduled maintenance
+        is created or updated. The same envelope is used for both;
+        scheduled maintenances populate `incident.scheduled_for` and
+        `incident.scheduled_until`.
+      required:
+        - meta
+        - page
+        - incident
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        page:
+          $ref: '#/components/schemas/Page'
+        incident:
+          $ref: '#/components/schemas/Incident'
