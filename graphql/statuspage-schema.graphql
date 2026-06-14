@@ -1,0 +1,1133 @@
+"""
+Atlassian Statuspage GraphQL Schema
+Derived from the Statuspage REST API (https://developer.statuspage.io/)
+and the public Status API v2 (https://doers.statuspage.io/api/v2/).
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar Date
+scalar JSON
+scalar URL
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+"""Current operational status of a component."""
+enum ComponentStatus {
+  operational
+  degraded_performance
+  partial_outage
+  major_outage
+  under_maintenance
+}
+
+"""Status values for an unplanned (real-time) incident."""
+enum IncidentStatus {
+  investigating
+  identified
+  monitoring
+  resolved
+  postmortem
+}
+
+"""Status values for a scheduled maintenance incident."""
+enum MaintenanceStatus {
+  scheduled
+  in_progress
+  verifying
+  completed
+}
+
+"""High-level classification of an incident."""
+enum IncidentType {
+  realtime
+  scheduled
+  backfill
+}
+
+"""Delivery channel for a page subscriber."""
+enum SubscriberType {
+  email
+  sms
+  webhook
+  atlassian
+  slack
+  rss
+  atom
+}
+
+"""Upstream data source for a metric."""
+enum MetricProvider {
+  Self
+  Datadog
+  NewRelic
+  Pingdom
+  PagerDuty
+}
+
+"""Aggregation function applied to metric data."""
+enum MetricAggregation {
+  sum
+  average
+  count
+}
+
+"""Impact level of an incident on a component."""
+enum ComponentImpact {
+  operational
+  degraded_performance
+  partial_outage
+  major_outage
+}
+
+"""Visibility of a status page or incident."""
+enum Visibility {
+  public
+  private
+}
+
+# ---------------------------------------------------------------------------
+# Interfaces
+# ---------------------------------------------------------------------------
+
+"""Base fields shared by all subscriber types."""
+interface Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  createdAt: DateTime!
+  subscribedToComponents: [Component!]
+  purgeAt: DateTime
+  isUnconfirmed: Boolean!
+}
+
+"""Fields shared by all metric provider configurations."""
+interface MetricSource {
+  id: ID!
+  metricId: ID!
+  provider: MetricProvider!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Fields shared by every incident variant."""
+interface BaseIncident {
+  id: ID!
+  name: String!
+  status: String!
+  type: IncidentType!
+  pageId: ID!
+  shortlink: URL
+  incidentUpdates: [IncidentUpdate!]!
+  components: [Component!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  resolvedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Page types
+# ---------------------------------------------------------------------------
+
+"""Top-level container representing a Statuspage site."""
+type Page {
+  id: ID!
+  name: String!
+  pageDescription: String
+  subdomain: String!
+  domain: String
+  url: URL!
+  branding: String
+  cssBodyBackgroundColor: String
+  cssFontColor: String
+  cssLightFontColor: String
+  cssGreens: String
+  cssYellows: String
+  cssOranges: String
+  cssBlues: String
+  cssReds: String
+  cssBorderColor: String
+  cssGraphColor: String
+  cssLinkColor: String
+  cssNoData: String
+  hiddenFromSearch: Boolean!
+  allowPageSubscriptions: Boolean!
+  allowIncidentSubscriptions: Boolean!
+  allowEmailSubscriptions: Boolean!
+  allowSmsSubscriptions: Boolean!
+  allowRssAtomFeeds: Boolean!
+  allowWebhookSubscriptions: Boolean!
+  notificationsFromEmail: String
+  notificationsEmailFooter: String
+  activityScore: Int
+  twitterUsername: String
+  viewersMustBeTeamMembers: Boolean!
+  ipRestrictions: String
+  city: String
+  state: String
+  country: String
+  timeZone: String!
+  cssCodeEmbed: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  components: [Component!]
+  incidents: [Incident!]
+  maintenances: [ScheduledIncident!]
+  subscribers: [Subscriber!]
+  metrics: [Metric!]
+  templates: [Template!]
+  status: PageStatus
+  details: PageDetails
+}
+
+"""Detailed configuration and statistics for a page."""
+type PageDetails {
+  pageId: ID!
+  subscriberCount: Int
+  dailySubscriberCount: Int
+  subscribersRequireAuthentication: Boolean
+  transactionCount: Int
+  pageAccessGroupCount: Int
+  teamCount: Int
+  userCount: Int
+  metricCount: Int
+  componentCount: Int
+  incidentCount: Int
+}
+
+"""Aggregated status summary for a page, as returned by the public v2 API."""
+type PageStatus {
+  indicator: String!
+  description: String!
+}
+
+"""Notification settings attached to a page."""
+type PageNotifications {
+  pageId: ID!
+  allowEmailSubscriptions: Boolean!
+  allowSmsSubscriptions: Boolean!
+  allowWebhookSubscriptions: Boolean!
+  allowRssAtomFeeds: Boolean!
+  allowSlackSubscriptions: Boolean!
+  allowAtlassianSubscriptions: Boolean!
+  notificationsFromEmail: String
+  notificationsEmailFooter: String
+  emailNotificationsEnabled: Boolean!
+  smsNotificationsEnabled: Boolean!
+}
+
+"""Summary listing of components for a page."""
+type PageComponents {
+  pageId: ID!
+  components: [Component!]!
+  groups: [ComponentGroup!]!
+}
+
+# ---------------------------------------------------------------------------
+# Component types
+# ---------------------------------------------------------------------------
+
+"""A tracked service or system displayed on a status page."""
+type Component {
+  id: ID!
+  pageId: ID!
+  groupId: ID
+  group: ComponentGroup
+  name: String!
+  description: String
+  position: Int!
+  status: ComponentStatus!
+  showcase: Boolean!
+  onlyShowIfDegradedOnDependents: Boolean!
+  startDate: Date
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  automation: Boolean
+  automationEmail: String
+  subcomponents: [Component!]
+}
+
+"""Extended metadata for a component, including raw API payload fields."""
+type ComponentDetails {
+  componentId: ID!
+  pageId: ID!
+  name: String!
+  description: String
+  status: ComponentStatus!
+  automationEmail: String
+  startDate: Date
+  groupId: ID
+  showcase: Boolean!
+  onlyShowIfDegradedOnDependents: Boolean!
+  position: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Union type surfacing the current status of a component with history."""
+type ComponentStatus {
+  id: ID!
+  name: String!
+  current: ComponentStatus!
+  previousStatus: ComponentStatus
+  changedAt: DateTime
+}
+
+"""A logical grouping of components."""
+type ComponentGroup {
+  id: ID!
+  pageId: ID!
+  name: String!
+  description: String
+  position: Int!
+  components: [Component!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A component nested inside a component group, with group context."""
+type GroupedComponent {
+  component: Component!
+  group: ComponentGroup!
+  position: Int!
+}
+
+# ---------------------------------------------------------------------------
+# Incident types
+# ---------------------------------------------------------------------------
+
+"""Abstract incident — use concrete types via inline fragments."""
+type Incident implements BaseIncident {
+  id: ID!
+  name: String!
+  status: String!
+  type: IncidentType!
+  pageId: ID!
+  shortlink: URL
+  impact: String
+  impactOverride: String
+  monitoringAt: DateTime
+  resolvedAt: DateTime
+  autoTransitionDeliverNotificationsAtEnd: Boolean
+  autoTransitionDeliverNotificationsAtStart: Boolean
+  autoTransitionToMaintenanceState: Boolean
+  autoTransitionToOperationalState: Boolean
+  sendNotifications: Boolean
+  scheduledFor: DateTime
+  scheduledUntil: DateTime
+  scheduledRemindPrior: Boolean
+  scheduledAutoInProgress: Boolean
+  scheduledAutoCompleted: Boolean
+  metadata: JSON
+  postmortemPublishedAt: DateTime
+  postmortemNotifiedSubscribers: Boolean
+  postmortemNotifiedTwitter: Boolean
+  postmortemIgnore: Boolean
+  incidentUpdates: [IncidentUpdate!]!
+  components: [Component!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Detailed view of an incident including all API-returned fields."""
+type IncidentDetails {
+  incidentId: ID!
+  pageId: ID!
+  name: String!
+  status: String!
+  type: IncidentType!
+  impact: String
+  shortlink: URL
+  incidentUpdates: [IncidentUpdateDetails!]!
+  components: [ComponentDetails!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  resolvedAt: DateTime
+  monitoringAt: DateTime
+  scheduledFor: DateTime
+  scheduledUntil: DateTime
+}
+
+"""Status of an incident at a point in time."""
+type IncidentStatus {
+  incidentId: ID!
+  status: String!
+  setAt: DateTime!
+  setBy: String
+}
+
+"""Typed indicator of whether an incident is realtime, scheduled, or backfill."""
+type IncidentType {
+  name: String!
+  label: String!
+}
+
+"""An unplanned service disruption incident."""
+type RealTimeIncident implements BaseIncident {
+  id: ID!
+  name: String!
+  status: IncidentStatus!
+  type: IncidentType!
+  pageId: ID!
+  shortlink: URL
+  impact: String
+  impactOverride: String
+  monitoringAt: DateTime
+  resolvedAt: DateTime
+  sendNotifications: Boolean!
+  metadata: JSON
+  postmortemPublishedAt: DateTime
+  incidentUpdates: [IncidentUpdate!]!
+  components: [Component!]
+  affectedComponentStatus: ComponentImpact
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A planned maintenance window incident."""
+type ScheduledIncident implements BaseIncident {
+  id: ID!
+  name: String!
+  status: MaintenanceStatus!
+  type: IncidentType!
+  pageId: ID!
+  shortlink: URL
+  scheduledFor: DateTime!
+  scheduledUntil: DateTime!
+  scheduledRemindPrior: Boolean!
+  scheduledAutoInProgress: Boolean!
+  scheduledAutoCompleted: Boolean!
+  autoTransitionDeliverNotificationsAtEnd: Boolean!
+  autoTransitionDeliverNotificationsAtStart: Boolean!
+  autoTransitionToMaintenanceState: Boolean!
+  autoTransitionToOperationalState: Boolean!
+  sendNotifications: Boolean!
+  incidentUpdates: [IncidentUpdate!]!
+  components: [Component!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  resolvedAt: DateTime
+}
+
+"""A retroactively entered historical incident."""
+type BackfillIncident implements BaseIncident {
+  id: ID!
+  name: String!
+  status: String!
+  type: IncidentType!
+  pageId: ID!
+  shortlink: URL
+  backfilledAt: DateTime!
+  startedAt: DateTime!
+  endedAt: DateTime!
+  incidentUpdates: [IncidentUpdate!]!
+  components: [Component!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  resolvedAt: DateTime
+}
+
+"""A status message update posted to an incident."""
+type IncidentUpdate {
+  id: ID!
+  incidentId: ID!
+  status: String!
+  body: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  displayAt: DateTime
+  deliverNotifications: Boolean!
+  customTweet: String
+  tweetId: String
+  affectedComponents: [ComponentImpact!]
+  wantsTwitterUpdate: Boolean!
+}
+
+"""Detailed view of a single incident update message."""
+type IncidentUpdateDetails {
+  updateId: ID!
+  incidentId: ID!
+  pageId: ID!
+  status: String!
+  body: String!
+  displayAt: DateTime
+  deliverNotifications: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  affectedComponents: [JSON]
+}
+
+# ---------------------------------------------------------------------------
+# Subscriber types
+# ---------------------------------------------------------------------------
+
+"""Email subscriber to a status page or specific components."""
+type EmailSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  email: String!
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+  quarantinedAt: DateTime
+  bounced: Boolean
+  skip_unconfirmed_check: Boolean
+}
+
+"""SMS subscriber for text-message incident notifications."""
+type SmsSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  phoneNumber: String!
+  countryCode: String!
+  displayPhoneNumber: String
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+}
+
+"""Webhook subscriber that receives HTTP POST payloads."""
+type WebhookSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  endpoint: URL!
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+  email: String
+}
+
+"""Atlassian product integration subscriber (Jira, Confluence, etc.)."""
+type AtlassianSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  atlassianSiteId: String!
+  atlassianOrganizationId: String
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+}
+
+"""Slack workspace subscriber for channel notifications."""
+type SlackSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  slackTeamId: String!
+  slackChannelId: String!
+  slackChannelName: String
+  webhookUrl: URL
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+}
+
+"""RSS feed subscriber (passive, read-only endpoint)."""
+type RssSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  feedUrl: URL!
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+}
+
+"""Atom feed subscriber (passive, read-only endpoint)."""
+type AtomSubscriber implements Subscriber {
+  id: ID!
+  type: SubscriberType!
+  pageId: ID!
+  feedUrl: URL!
+  isUnconfirmed: Boolean!
+  subscribedToComponents: [Component!]
+  createdAt: DateTime!
+  purgeAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Metric types
+# ---------------------------------------------------------------------------
+
+"""A metric chart displayed on a status page."""
+type Metric {
+  id: ID!
+  pageId: ID!
+  name: String!
+  displayChartOnLanding: Boolean!
+  mostRecentDataDegradedAt: DateTime
+  mostRecentDataAt: DateTime
+  startDate: Date
+  created: DateTime!
+  updated: DateTime!
+  lastFetchedAt: DateTime
+  backfillPercentage: Float
+  tokenType: String
+  provider: MetricProvider!
+  units: String
+  decimals: Int
+  suffix: String
+  displayType: String
+  data: MetricData
+  history: MetricHistory
+}
+
+"""Detailed configuration for a metric, including provider settings."""
+type MetricDetails {
+  metricId: ID!
+  pageId: ID!
+  name: String!
+  provider: MetricProvider!
+  units: String
+  decimals: Int
+  suffix: String
+  displayType: String
+  displayChartOnLanding: Boolean!
+  tokenType: String
+  startDate: Date
+  created: DateTime!
+  updated: DateTime!
+}
+
+"""A single data point value for a metric."""
+type MetricValue {
+  timestamp: DateTime!
+  value: Float!
+}
+
+"""Aggregated historical metric values."""
+type MetricData {
+  metricId: ID!
+  data: [MetricValue!]!
+  from: DateTime
+  to: DateTime
+}
+
+"""Historical rollup of metric values by period."""
+type MetricHistory {
+  metricId: ID!
+  daily: [MetricValue!]
+  weekly: [MetricValue!]
+  monthly: [MetricValue!]
+}
+
+"""Datadog-sourced metric configuration."""
+type DatadogMetric implements MetricSource {
+  id: ID!
+  metricId: ID!
+  provider: MetricProvider!
+  datadogApiKey: String
+  datadogApplicationKey: String
+  datadogQuery: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""New Relic-sourced metric configuration."""
+type NewRelicMetric implements MetricSource {
+  id: ID!
+  metricId: ID!
+  provider: MetricProvider!
+  newRelicApiKey: String
+  newRelicAccountId: String
+  newRelicQuery: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Pingdom-sourced metric configuration."""
+type PingdomMetric implements MetricSource {
+  id: ID!
+  metricId: ID!
+  provider: MetricProvider!
+  pingdomApiKey: String
+  pingdomCheckId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""PagerDuty-sourced metric configuration."""
+type PagerDutyMetric implements MetricSource {
+  id: ID!
+  metricId: ID!
+  provider: MetricProvider!
+  pagerdutyApiKey: String
+  pagerdutyServiceId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Maintenance types
+# ---------------------------------------------------------------------------
+
+"""A scheduled maintenance window (alias view of ScheduledIncident)."""
+type MaintenanceWindow {
+  id: ID!
+  pageId: ID!
+  name: String!
+  status: MaintenanceStatus!
+  scheduledFor: DateTime!
+  scheduledUntil: DateTime!
+  autoInProgress: Boolean!
+  autoCompleted: Boolean!
+  remindPrior: Boolean!
+  deliverNotificationsAtStart: Boolean!
+  deliverNotificationsAtEnd: Boolean!
+  components: [Component!]
+  updates: [IncidentUpdate!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Detailed fields for a maintenance window including full update history."""
+type MaintenanceDetails {
+  maintenanceId: ID!
+  pageId: ID!
+  name: String!
+  status: MaintenanceStatus!
+  scheduledFor: DateTime!
+  scheduledUntil: DateTime!
+  updates: [IncidentUpdateDetails!]!
+  components: [ComponentDetails!]
+  impact: String
+  shortlink: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Template type
+# ---------------------------------------------------------------------------
+
+"""A saved incident message template for rapid incident creation."""
+type Template {
+  id: ID!
+  pageId: ID!
+  name: String!
+  title: String
+  body: String!
+  shouldTweet: Boolean!
+  shouldSendNotifications: Boolean!
+  componentIds: [ID!]
+  groupComponentIds: [ID!]
+  incidentComponentImpact: ComponentImpact
+  incidentType: IncidentType
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Organization and Auth types
+# ---------------------------------------------------------------------------
+
+"""An Atlassian organization that owns one or more Statuspage pages."""
+type Organization {
+  id: ID!
+  name: String!
+  pages: [Page!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""An API key used to authenticate Statuspage management API requests."""
+type APIKey {
+  id: ID!
+  name: String!
+  key: String
+  pageId: ID
+  organizationId: ID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastUsedAt: DateTime
+  revokedAt: DateTime
+}
+
+"""An OAuth-style token (internal) returned by the management API."""
+type Token {
+  tokenValue: String!
+  type: String!
+  scope: String
+  expiresAt: DateTime
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Embedded widget type
+# ---------------------------------------------------------------------------
+
+"""Configuration for the Statuspage JavaScript embed widget."""
+type StatusEmbedded {
+  pageId: ID!
+  embedCode: String!
+  iframeUrl: URL!
+  allowedOrigins: [String!]
+  displayAllComponents: Boolean!
+  displayUptime: Boolean!
+  displayActiveIncidents: Boolean!
+  displayActiveMaintenance: Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# Input types
+# ---------------------------------------------------------------------------
+
+"""Input for creating or updating a page."""
+input PageInput {
+  name: String
+  subdomain: String
+  domain: String
+  allowPageSubscriptions: Boolean
+  allowIncidentSubscriptions: Boolean
+  allowEmailSubscriptions: Boolean
+  allowSmsSubscriptions: Boolean
+  allowRssAtomFeeds: Boolean
+  allowWebhookSubscriptions: Boolean
+  hiddenFromSearch: Boolean
+  viewersMustBeTeamMembers: Boolean
+  notificationsFromEmail: String
+  notificationsEmailFooter: String
+  timeZone: String
+  city: String
+  state: String
+  country: String
+  twitterUsername: String
+}
+
+"""Input for creating or updating a component."""
+input ComponentInput {
+  name: String!
+  description: String
+  status: ComponentStatus
+  onlyShowIfDegradedOnDependents: Boolean
+  groupId: ID
+  showcase: Boolean
+  startDate: Date
+}
+
+"""Input for creating or updating a component group."""
+input ComponentGroupInput {
+  name: String!
+  description: String
+  components: [ID!]
+}
+
+"""Input for creating or updating an incident."""
+input IncidentInput {
+  name: String!
+  status: String
+  impactOverride: String
+  body: String
+  componentIds: [ID!]
+  componentStatus: ComponentImpact
+  sendNotifications: Boolean
+  metadata: JSON
+  backfillDate: Date
+  deliverNotifications: Boolean
+  scheduledAutoInProgress: Boolean
+  scheduledAutoCompleted: Boolean
+  scheduledFor: DateTime
+  scheduledRemindPrior: Boolean
+  scheduledUntil: DateTime
+}
+
+"""Input for posting an update to an existing incident."""
+input IncidentUpdateInput {
+  status: String!
+  body: String!
+  deliverNotifications: Boolean
+  displayAt: DateTime
+  wantsTwitterUpdate: Boolean
+  customTweet: String
+  affectedComponents: [JSON]
+}
+
+"""Input for creating a scheduled maintenance."""
+input MaintenanceInput {
+  name: String!
+  status: MaintenanceStatus
+  scheduledFor: DateTime!
+  scheduledUntil: DateTime!
+  body: String
+  componentIds: [ID!]
+  componentStatus: ComponentImpact
+  scheduledAutoInProgress: Boolean
+  scheduledAutoCompleted: Boolean
+  scheduledRemindPrior: Boolean
+  deliverNotifications: Boolean
+  autoTransitionDeliverNotificationsAtEnd: Boolean
+  autoTransitionDeliverNotificationsAtStart: Boolean
+  autoTransitionToMaintenanceState: Boolean
+  autoTransitionToOperationalState: Boolean
+}
+
+"""Input for creating a new subscriber."""
+input SubscriberInput {
+  type: SubscriberType!
+  email: String
+  phoneNumber: String
+  countryCode: String
+  endpoint: URL
+  slackTeamId: String
+  slackChannelId: String
+  pageAccessGroupIds: [ID!]
+  componentIds: [ID!]
+  skipUnconfirmedCheck: Boolean
+}
+
+"""Input for creating or updating a metric."""
+input MetricInput {
+  name: String!
+  provider: MetricProvider!
+  units: String
+  decimals: Int
+  suffix: String
+  displayType: String
+  displayChartOnLanding: Boolean
+  startDate: Date
+  tokenType: String
+}
+
+"""Input for submitting a metric data point."""
+input MetricDataPointInput {
+  timestamp: DateTime!
+  value: Float!
+}
+
+"""Input for creating or updating an incident template."""
+input TemplateInput {
+  name: String!
+  title: String
+  body: String!
+  shouldTweet: Boolean
+  shouldSendNotifications: Boolean
+  componentIds: [ID!]
+  groupComponentIds: [ID!]
+  incidentComponentImpact: ComponentImpact
+  incidentType: IncidentType
+}
+
+# ---------------------------------------------------------------------------
+# Filter types
+# ---------------------------------------------------------------------------
+
+"""Filters for listing pages."""
+input PageFilter {
+  name: String
+  subdomain: String
+}
+
+"""Filters for listing incidents."""
+input IncidentFilter {
+  status: [String!]
+  impact: [String!]
+  limit: Int
+  offset: Int
+  includePostmortem: Boolean
+}
+
+"""Filters for listing components."""
+input ComponentFilter {
+  status: [ComponentStatus!]
+  groupId: ID
+  showcase: Boolean
+}
+
+"""Filters for listing subscribers."""
+input SubscriberFilter {
+  type: SubscriberType
+  email: String
+  limit: Int
+  offset: Int
+}
+
+# ---------------------------------------------------------------------------
+# Root types
+# ---------------------------------------------------------------------------
+
+type Query {
+  """List all pages accessible with the current API key."""
+  pages(filter: PageFilter): [Page!]!
+
+  """Retrieve a single page by ID."""
+  page(id: ID!): Page
+
+  """Get the aggregated status for a page (public v2)."""
+  pageStatus(pageId: ID!): PageStatus
+
+  """Get detailed page configuration."""
+  pageDetails(pageId: ID!): PageDetails
+
+  """Get notification settings for a page."""
+  pageNotifications(pageId: ID!): PageNotifications
+
+  """List all components for a page."""
+  components(pageId: ID!, filter: ComponentFilter): [Component!]!
+
+  """Get a single component."""
+  component(pageId: ID!, componentId: ID!): Component
+
+  """List component groups for a page."""
+  componentGroups(pageId: ID!): [ComponentGroup!]!
+
+  """Get a single component group."""
+  componentGroup(pageId: ID!, groupId: ID!): ComponentGroup
+
+  """List all components including group nesting."""
+  groupedComponents(pageId: ID!): [GroupedComponent!]!
+
+  """List incidents for a page."""
+  incidents(pageId: ID!, filter: IncidentFilter): [Incident!]!
+
+  """Get a single incident."""
+  incident(pageId: ID!, incidentId: ID!): Incident
+
+  """List unresolved incidents."""
+  unresolvedIncidents(pageId: ID!): [RealTimeIncident!]!
+
+  """List all scheduled maintenances."""
+  scheduledMaintenances(pageId: ID!): [ScheduledIncident!]!
+
+  """List active scheduled maintenances."""
+  activeMaintenances(pageId: ID!): [ScheduledIncident!]!
+
+  """List upcoming scheduled maintenances."""
+  upcomingMaintenances(pageId: ID!): [ScheduledIncident!]!
+
+  """Get updates for an incident."""
+  incidentUpdates(pageId: ID!, incidentId: ID!): [IncidentUpdate!]!
+
+  """List subscribers for a page."""
+  subscribers(pageId: ID!, filter: SubscriberFilter): [Subscriber!]!
+
+  """Get a single subscriber."""
+  subscriber(pageId: ID!, subscriberId: ID!): Subscriber
+
+  """List metrics for a page."""
+  metrics(pageId: ID!): [Metric!]!
+
+  """Get a single metric."""
+  metric(pageId: ID!, metricId: ID!): Metric
+
+  """Get metric data points."""
+  metricData(pageId: ID!, metricId: ID!, from: DateTime, to: DateTime): MetricData
+
+  """Get metric history rollups."""
+  metricHistory(pageId: ID!, metricId: ID!): MetricHistory
+
+  """List incident templates for a page."""
+  templates(pageId: ID!): [Template!]!
+
+  """Get a single template."""
+  template(pageId: ID!, templateId: ID!): Template
+
+  """Get the current organization."""
+  organization: Organization
+
+  """Get the status embed widget configuration."""
+  statusEmbedded(pageId: ID!): StatusEmbedded
+
+  """List all API keys for the authenticated user."""
+  apiKeys: [APIKey!]!
+}
+
+type Mutation {
+  """Update page settings."""
+  updatePage(pageId: ID!, input: PageInput!): Page
+
+  """Create a new component on a page."""
+  createComponent(pageId: ID!, input: ComponentInput!): Component
+
+  """Update an existing component."""
+  updateComponent(pageId: ID!, componentId: ID!, input: ComponentInput!): Component
+
+  """Delete a component."""
+  deleteComponent(pageId: ID!, componentId: ID!): Boolean
+
+  """Create a component group."""
+  createComponentGroup(pageId: ID!, input: ComponentGroupInput!): ComponentGroup
+
+  """Update a component group."""
+  updateComponentGroup(pageId: ID!, groupId: ID!, input: ComponentGroupInput!): ComponentGroup
+
+  """Delete a component group."""
+  deleteComponentGroup(pageId: ID!, groupId: ID!): Boolean
+
+  """Create a new incident."""
+  createIncident(pageId: ID!, input: IncidentInput!): Incident
+
+  """Update an existing incident."""
+  updateIncident(pageId: ID!, incidentId: ID!, input: IncidentInput!): Incident
+
+  """Delete an incident."""
+  deleteIncident(pageId: ID!, incidentId: ID!): Boolean
+
+  """Post a status update to an incident."""
+  postIncidentUpdate(pageId: ID!, incidentId: ID!, input: IncidentUpdateInput!): IncidentUpdate
+
+  """Create a scheduled maintenance."""
+  createMaintenance(pageId: ID!, input: MaintenanceInput!): ScheduledIncident
+
+  """Update a scheduled maintenance."""
+  updateMaintenance(pageId: ID!, maintenanceId: ID!, input: MaintenanceInput!): ScheduledIncident
+
+  """Delete a scheduled maintenance."""
+  deleteMaintenance(pageId: ID!, maintenanceId: ID!): Boolean
+
+  """Create a new subscriber."""
+  createSubscriber(pageId: ID!, input: SubscriberInput!): Subscriber
+
+  """Update subscriber component subscriptions."""
+  updateSubscriberComponents(pageId: ID!, subscriberId: ID!, componentIds: [ID!]!): Subscriber
+
+  """Unsubscribe (delete) a subscriber."""
+  deleteSubscriber(pageId: ID!, subscriberId: ID!): Boolean
+
+  """Resend confirmation to an unconfirmed subscriber."""
+  resendSubscriberConfirmation(pageId: ID!, subscriberId: ID!): Boolean
+
+  """Create a new metric."""
+  createMetric(pageId: ID!, input: MetricInput!): Metric
+
+  """Update a metric."""
+  updateMetric(pageId: ID!, metricId: ID!, input: MetricInput!): Metric
+
+  """Delete a metric."""
+  deleteMetric(pageId: ID!, metricId: ID!): Boolean
+
+  """Submit data points to a metric."""
+  submitMetricData(pageId: ID!, metricId: ID!, data: [MetricDataPointInput!]!): MetricData
+
+  """Reset metric data (delete all points)."""
+  resetMetricData(pageId: ID!, metricId: ID!): Boolean
+
+  """Create an incident template."""
+  createTemplate(pageId: ID!, input: TemplateInput!): Template
+
+  """Update an incident template."""
+  updateTemplate(pageId: ID!, templateId: ID!, input: TemplateInput!): Template
+
+  """Delete an incident template."""
+  deleteTemplate(pageId: ID!, templateId: ID!): Boolean
+
+  """Create a new API key."""
+  createApiKey(name: String!, pageId: ID): APIKey
+
+  """Revoke an API key."""
+  revokeApiKey(keyId: ID!): Boolean
+}
