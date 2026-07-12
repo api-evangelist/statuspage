@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/statuspage-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: |-
+    Pass `Authorization: OAuth <api_key>`. The API key may alternatively
+    be provided via the `api_key` query parameter.
+  sources:
+  - openapi/statuspage-openapi.yml

@@ -78,6 +78,14 @@ apis:
   - type: AsyncAPI
     url: https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/asyncapi/statuspage-webhooks-asyncapi.yml
 common:
+- type: TrustCenter
+  url: security/statuspage-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/statuspage-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/statuspage-domain-security.yml
+- type: Authentication
+  url: authentication/statuspage-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/StatusPage
 - type: LinkedIn
