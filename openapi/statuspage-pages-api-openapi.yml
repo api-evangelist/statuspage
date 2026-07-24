@@ -1,348 +1,447 @@
 openapi: 3.1.0
 info:
-  title: Statuspage REST API
-  version: "1.0.0"
-  description: |
-    Atlassian Statuspage REST API for managing pages, components, incidents,
+  title: Statuspage REST Pages API
+  version: 1.0.0
+  description: 'Atlassian Statuspage REST API for managing pages, components, incidents,
+
     scheduled maintenances, metrics, and subscribers. Endpoints derived from
+
     https://developer.statuspage.io/. Each API token is limited to 1 request
+
     per second on a 60-second rolling window.
+
+    '
   contact:
     name: Statuspage Support
     url: https://support.atlassian.com/statuspage/
 servers:
-  - url: https://api.statuspage.io/v1
-    description: Statuspage REST API
+- url: https://api.statuspage.io/v1
+  description: Statuspage REST API
 security:
-  - ApiKey: []
-components:
-  securitySchemes:
-    ApiKey:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: |
-        Pass `Authorization: OAuth <api_key>`. The API key may alternatively
-        be provided via the `api_key` query parameter.
+- ApiKey: []
+tags:
+- name: Pages
 paths:
   /pages:
     get:
       summary: List pages
       responses:
-        "200":
+        '200':
           description: List of pages
+      tags:
+      - Pages
   /pages/{page_id}:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: Get a page
       responses:
-        "200":
+        '200':
           description: Page
+      tags:
+      - Pages
     patch:
       summary: Update a page
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "200":
+        '200':
           description: Updated page
+      tags:
+      - Pages
   /pages/{page_id}/components:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List components on a page
       responses:
-        "200":
+        '200':
           description: List of components
+      tags:
+      - Pages
     post:
       summary: Create a component
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "201":
+        '201':
           description: Component created
+      tags:
+      - Pages
   /pages/{page_id}/components/{component_id}:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
-      - in: path
-        name: component_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: component_id
+      required: true
+      schema:
+        type: string
     get:
       summary: Get a component
       responses:
-        "200":
+        '200':
           description: Component
+      tags:
+      - Pages
     patch:
       summary: Update a component
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "200":
+        '200':
           description: Updated component
+      tags:
+      - Pages
     delete:
       summary: Delete a component
       responses:
-        "204":
+        '204':
           description: Deleted
+      tags:
+      - Pages
   /pages/{page_id}/component-groups:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List component groups
       responses:
-        "200":
+        '200':
           description: List of component groups
+      tags:
+      - Pages
     post:
       summary: Create a component group
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "201":
+        '201':
           description: Component group created
+      tags:
+      - Pages
   /pages/{page_id}/incidents:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List incidents
       responses:
-        "200":
+        '200':
           description: List of incidents
+      tags:
+      - Pages
     post:
       summary: Create an incident
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "201":
+        '201':
           description: Incident created
+      tags:
+      - Pages
   /pages/{page_id}/incidents/{incident_id}:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
-      - in: path
-        name: incident_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: incident_id
+      required: true
+      schema:
+        type: string
     get:
       summary: Get an incident
       responses:
-        "200":
+        '200':
           description: Incident
+      tags:
+      - Pages
     patch:
       summary: Update an incident
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "200":
+        '200':
           description: Updated incident
+      tags:
+      - Pages
     delete:
       summary: Delete an incident
       responses:
-        "204":
+        '204':
           description: Deleted
+      tags:
+      - Pages
   /pages/{page_id}/incidents/unresolved:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List unresolved incidents
       responses:
-        "200":
+        '200':
           description: List of unresolved incidents
+      tags:
+      - Pages
   /pages/{page_id}/incidents/scheduled:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List scheduled incidents
       responses:
-        "200":
+        '200':
           description: List of scheduled incidents
+      tags:
+      - Pages
   /pages/{page_id}/incidents/{incident_id}/incident_updates/{incident_update_id}:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
-      - in: path
-        name: incident_id
-        required: true
-        schema: { type: string }
-      - in: path
-        name: incident_update_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: incident_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: incident_update_id
+      required: true
+      schema:
+        type: string
     patch:
       summary: Update an incident update
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "200":
+        '200':
           description: Updated incident update
+      tags:
+      - Pages
   /pages/{page_id}/maintenances:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List scheduled maintenances
       responses:
-        "200":
+        '200':
           description: List of maintenances
+      tags:
+      - Pages
   /pages/{page_id}/maintenances/active:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List active maintenances
       responses:
-        "200":
+        '200':
           description: List of active maintenances
+      tags:
+      - Pages
   /pages/{page_id}/maintenances/upcoming:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List upcoming maintenances
       responses:
-        "200":
+        '200':
           description: List of upcoming maintenances
+      tags:
+      - Pages
   /pages/{page_id}/subscribers:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List subscribers
       responses:
-        "200":
+        '200':
           description: List of subscribers
+      tags:
+      - Pages
     post:
       summary: Create a subscriber
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "201":
+        '201':
           description: Subscriber created
+      tags:
+      - Pages
   /pages/{page_id}/subscribers/{subscriber_id}:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
-      - in: path
-        name: subscriber_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: subscriber_id
+      required: true
+      schema:
+        type: string
     get:
       summary: Get a subscriber
       responses:
-        "200":
+        '200':
           description: Subscriber
+      tags:
+      - Pages
     patch:
       summary: Update a subscriber
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "200":
+        '200':
           description: Updated subscriber
+      tags:
+      - Pages
     delete:
       summary: Delete a subscriber
       responses:
-        "204":
+        '204':
           description: Deleted
+      tags:
+      - Pages
   /pages/{page_id}/metrics:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
     get:
       summary: List metrics
       responses:
-        "200":
+        '200':
           description: List of metrics
+      tags:
+      - Pages
     post:
       summary: Create a metric
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "201":
+        '201':
           description: Metric created
+      tags:
+      - Pages
   /pages/{page_id}/metrics/{metric_id}/data:
     parameters:
-      - in: path
-        name: page_id
-        required: true
-        schema: { type: string }
-      - in: path
-        name: metric_id
-        required: true
-        schema: { type: string }
+    - in: path
+      name: page_id
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: metric_id
+      required: true
+      schema:
+        type: string
     post:
       summary: Add metric data points
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        "201":
+        '201':
           description: Data submitted
+      tags:
+      - Pages
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Pass `Authorization: OAuth <api_key>`. The API key may alternatively
+
+        be provided via the `api_key` query parameter.
+
+        '
