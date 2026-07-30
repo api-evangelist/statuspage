@@ -9,7 +9,19 @@ description: Statuspage by Atlassian is a hosted status page and incident commun
   maintenances, metrics, subscribers, and users authenticated with an OAuth-prefixed
   API key.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/statuspage.png
 tags:
 - Status Page
 - Incident Communication
@@ -24,10 +36,10 @@ specificationVersion: '0.19'
 apis:
 - aid: statuspage:manage-api
   name: Statuspage Manage API
-  description: REST API for managing Statuspage pages, components, component groups,
-    incidents, incident templates, scheduled maintenances, metrics, subscribers, users,
-    and page access groups. Authentication uses an API key passed in the Authorization
-    header with the literal "OAuth" prefix.
+  description: >-
+    REST API for managing Statuspage pages, components, component groups, incidents, incident templates,
+    scheduled maintenances, metrics, subscribers, users, and page access groups. Authentication uses an
+    API key passed in the Authorization header with the literal "OAuth" prefix.
   humanURL: https://developer.statuspage.io/
   baseURL: https://api.statuspage.io/v1
   tags:
@@ -47,9 +59,9 @@ apis:
     type: GraphQL
 - aid: statuspage:status-api
   name: Statuspage Status API (v2)
-  description: Public, read-only REST API exposed by every Statuspage at /api/v2 that
-    returns current status, components, incidents, maintenances, and uptime data as
-    JSON. Useful for embedding status data in applications.
+  description: >-
+    Public, read-only REST API exposed by every Statuspage at /api/v2 that returns current status, components,
+    incidents, maintenances, and uptime data as JSON. Useful for embedding status data in applications.
   humanURL: https://doers.statuspage.io/api/v2/
   baseURL: https://[page-id].statuspage.io/api/v2
   tags:
@@ -61,9 +73,10 @@ apis:
     url: https://doers.statuspage.io/api/v2/
 - aid: statuspage:webhooks
   name: Statuspage Webhook Notifications
-  description: Outbound webhook notifications Statuspage POSTs to subscriber endpoints
-    for component status changes, incident lifecycle updates, and scheduled maintenance
-    lifecycle updates. Subscribers must respond with a 2xx status code within 30 seconds.
+  description: >-
+    Outbound webhook notifications Statuspage POSTs to subscriber endpoints for component status changes,
+    incident lifecycle updates, and scheduled maintenance lifecycle updates. Subscribers must respond
+    with a 2xx status code within 30 seconds.
   humanURL: https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
   tags:
   - Webhooks
@@ -76,7 +89,18 @@ apis:
   - type: Documentation
     url: https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
   - type: AsyncAPI
-    url: https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/asyncapi/statuspage-webhooks-asyncapi.yml
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/asyncapi/statuspage-webhooks-asyncapi.yml
+- aid: statuspage:statuspage-pages-api
+  name: Statuspage Pages API
+  description: The Pages API from Statuspage — 17 operation(s) for pages.
+  humanURL: https://developer.statuspage.io/
+  baseURL: https://api.statuspage.io/v1
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/statuspage-pages-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/statuspage-agentic-access.yml
