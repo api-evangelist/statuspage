@@ -1,0 +1,14 @@
+{
+  "provider": "statuspage",
+  "sources": [
+    "statuspage-pages-api-openapi.yml"
+  ],
+  "outputs": [
+    "statuspage-pages-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
