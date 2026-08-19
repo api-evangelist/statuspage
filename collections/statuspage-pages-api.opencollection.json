@@ -1,0 +1,645 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Statuspage REST Pages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages"
+          },
+          "docs": "List pages"
+        },
+        {
+          "info": {
+            "name": "Get a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a page"
+        },
+        {
+          "info": {
+            "name": "Update a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.statuspage.io/v1/pages/:page_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a page"
+        },
+        {
+          "info": {
+            "name": "List components on a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/components",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List components on a page"
+        },
+        {
+          "info": {
+            "name": "Create a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/components",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a component"
+        },
+        {
+          "info": {
+            "name": "Get a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/components/:component_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a component"
+        },
+        {
+          "info": {
+            "name": "Update a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/components/:component_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a component"
+        },
+        {
+          "info": {
+            "name": "Delete a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/components/:component_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a component"
+        },
+        {
+          "info": {
+            "name": "List component groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/component-groups",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List component groups"
+        },
+        {
+          "info": {
+            "name": "Create a component group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/component-groups",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a component group"
+        },
+        {
+          "info": {
+            "name": "List incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List incidents"
+        },
+        {
+          "info": {
+            "name": "Create an incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an incident"
+        },
+        {
+          "info": {
+            "name": "Get an incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents/:incident_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "incident_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an incident"
+        },
+        {
+          "info": {
+            "name": "Update an incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents/:incident_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "incident_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an incident"
+        },
+        {
+          "info": {
+            "name": "Delete an incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents/:incident_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "incident_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an incident"
+        },
+        {
+          "info": {
+            "name": "List unresolved incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents/unresolved",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List unresolved incidents"
+        },
+        {
+          "info": {
+            "name": "List scheduled incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents/scheduled",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List scheduled incidents"
+        },
+        {
+          "info": {
+            "name": "Update an incident update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/incidents/:incident_id/incident_updates/:incident_update_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "incident_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "incident_update_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an incident update"
+        },
+        {
+          "info": {
+            "name": "List scheduled maintenances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/maintenances",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List scheduled maintenances"
+        },
+        {
+          "info": {
+            "name": "List active maintenances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/maintenances/active",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List active maintenances"
+        },
+        {
+          "info": {
+            "name": "List upcoming maintenances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/maintenances/upcoming",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List upcoming maintenances"
+        },
+        {
+          "info": {
+            "name": "List subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/subscribers",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List subscribers"
+        },
+        {
+          "info": {
+            "name": "Create a subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/subscribers",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a subscriber"
+        },
+        {
+          "info": {
+            "name": "Get a subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/subscribers/:subscriber_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "subscriber_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a subscriber"
+        },
+        {
+          "info": {
+            "name": "Update a subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/subscribers/:subscriber_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "subscriber_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a subscriber"
+        },
+        {
+          "info": {
+            "name": "Delete a subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/subscribers/:subscriber_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "subscriber_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a subscriber"
+        },
+        {
+          "info": {
+            "name": "List metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/metrics",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List metrics"
+        },
+        {
+          "info": {
+            "name": "Create a metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/metrics",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a metric"
+        },
+        {
+          "info": {
+            "name": "Add metric data points",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.statuspage.io/v1/pages/:page_id/metrics/:metric_id/data",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metric_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add metric data points"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
