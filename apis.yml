@@ -67,6 +67,10 @@ apis:
   tags:
   - Status
   - Public
+  - Read Only
+  tags_raw:
+  - Status
+  - Public
   - Read-Only
   properties:
   - type: Documentation
@@ -79,6 +83,13 @@ apis:
     with a 2xx status code within 30 seconds.
   humanURL: https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
   tags:
+  - Webhook
+  - Notification
+  - Incidents
+  - Components
+  - Scheduled Maintenance
+  - Event-Driven
+  tags_raw:
   - Webhooks
   - Notifications
   - Incidents
