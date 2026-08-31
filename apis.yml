@@ -79,7 +79,7 @@ apis:
   tags:
   - Status
   - Public
-  - Read Only
+  - Read-Only
   tags_raw:
   - Status
   - Public
