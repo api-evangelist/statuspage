@@ -36,6 +36,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/statuspage.png
 tags:
+- Status Pages
+- Incident Communication
+- Incident Management
+- Uptime
+- Reliability
+- Atlassian
+tags_raw:
 - Status Page
 - Incident Communication
 - Incident Management
