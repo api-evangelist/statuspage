@@ -8,9 +8,7 @@ info:
 
     https://developer.statuspage.io/. Each API token is limited to 1 request
 
-    per second on a 60-second rolling window.
-
-    '
+    per second on a 60-second rolling window.'
   contact:
     name: Statuspage Support
     url: https://support.atlassian.com/statuspage/
@@ -30,6 +28,8 @@ paths:
           description: List of pages
       tags:
       - Pages
+      operationId: getPages
+      x-operation-id-source: derived
   /pages/{page_id}:
     parameters:
     - in: path
@@ -44,6 +44,8 @@ paths:
           description: Page
       tags:
       - Pages
+      operationId: getPagesByPageId
+      x-operation-id-source: derived
     patch:
       summary: Update a page
       requestBody:
@@ -57,6 +59,8 @@ paths:
           description: Updated page
       tags:
       - Pages
+      operationId: patchPagesByPageId
+      x-operation-id-source: derived
   /pages/{page_id}/components:
     parameters:
     - in: path
@@ -71,6 +75,8 @@ paths:
           description: List of components
       tags:
       - Pages
+      operationId: getPagesByPageIdComponents
+      x-operation-id-source: derived
     post:
       summary: Create a component
       requestBody:
@@ -84,6 +90,8 @@ paths:
           description: Component created
       tags:
       - Pages
+      operationId: postPagesByPageIdComponents
+      x-operation-id-source: derived
   /pages/{page_id}/components/{component_id}:
     parameters:
     - in: path
@@ -103,6 +111,8 @@ paths:
           description: Component
       tags:
       - Pages
+      operationId: getPagesByPageIdComponentsByComponentId
+      x-operation-id-source: derived
     patch:
       summary: Update a component
       requestBody:
@@ -116,6 +126,8 @@ paths:
           description: Updated component
       tags:
       - Pages
+      operationId: patchPagesByPageIdComponentsByComponentId
+      x-operation-id-source: derived
     delete:
       summary: Delete a component
       responses:
@@ -123,6 +135,8 @@ paths:
           description: Deleted
       tags:
       - Pages
+      operationId: deletePagesByPageIdComponentsByComponentId
+      x-operation-id-source: derived
   /pages/{page_id}/component-groups:
     parameters:
     - in: path
@@ -137,6 +151,8 @@ paths:
           description: List of component groups
       tags:
       - Pages
+      operationId: getPagesByPageIdComponentGroups
+      x-operation-id-source: derived
     post:
       summary: Create a component group
       requestBody:
@@ -150,6 +166,8 @@ paths:
           description: Component group created
       tags:
       - Pages
+      operationId: postPagesByPageIdComponentGroups
+      x-operation-id-source: derived
   /pages/{page_id}/incidents:
     parameters:
     - in: path
@@ -164,6 +182,8 @@ paths:
           description: List of incidents
       tags:
       - Pages
+      operationId: getPagesByPageIdIncidents
+      x-operation-id-source: derived
     post:
       summary: Create an incident
       requestBody:
@@ -177,6 +197,8 @@ paths:
           description: Incident created
       tags:
       - Pages
+      operationId: postPagesByPageIdIncidents
+      x-operation-id-source: derived
   /pages/{page_id}/incidents/{incident_id}:
     parameters:
     - in: path
@@ -196,6 +218,8 @@ paths:
           description: Incident
       tags:
       - Pages
+      operationId: getPagesByPageIdIncidentsByIncidentId
+      x-operation-id-source: derived
     patch:
       summary: Update an incident
       requestBody:
@@ -209,6 +233,8 @@ paths:
           description: Updated incident
       tags:
       - Pages
+      operationId: patchPagesByPageIdIncidentsByIncidentId
+      x-operation-id-source: derived
     delete:
       summary: Delete an incident
       responses:
@@ -216,6 +242,8 @@ paths:
           description: Deleted
       tags:
       - Pages
+      operationId: deletePagesByPageIdIncidentsByIncidentId
+      x-operation-id-source: derived
   /pages/{page_id}/incidents/unresolved:
     parameters:
     - in: path
@@ -230,6 +258,8 @@ paths:
           description: List of unresolved incidents
       tags:
       - Pages
+      operationId: getPagesByPageIdIncidentsUnresolved
+      x-operation-id-source: derived
   /pages/{page_id}/incidents/scheduled:
     parameters:
     - in: path
@@ -244,6 +274,8 @@ paths:
           description: List of scheduled incidents
       tags:
       - Pages
+      operationId: getPagesByPageIdIncidentsScheduled
+      x-operation-id-source: derived
   /pages/{page_id}/incidents/{incident_id}/incident_updates/{incident_update_id}:
     parameters:
     - in: path
@@ -274,6 +306,8 @@ paths:
           description: Updated incident update
       tags:
       - Pages
+      operationId: patchPagesByPageIdIncidentsByIncidentIdIncidentUpdatesByIncidentUpdateId
+      x-operation-id-source: derived
   /pages/{page_id}/maintenances:
     parameters:
     - in: path
@@ -288,6 +322,8 @@ paths:
           description: List of maintenances
       tags:
       - Pages
+      operationId: getPagesByPageIdMaintenances
+      x-operation-id-source: derived
   /pages/{page_id}/maintenances/active:
     parameters:
     - in: path
@@ -302,6 +338,8 @@ paths:
           description: List of active maintenances
       tags:
       - Pages
+      operationId: getPagesByPageIdMaintenancesActive
+      x-operation-id-source: derived
   /pages/{page_id}/maintenances/upcoming:
     parameters:
     - in: path
@@ -316,6 +354,8 @@ paths:
           description: List of upcoming maintenances
       tags:
       - Pages
+      operationId: getPagesByPageIdMaintenancesUpcoming
+      x-operation-id-source: derived
   /pages/{page_id}/subscribers:
     parameters:
     - in: path
@@ -330,6 +370,8 @@ paths:
           description: List of subscribers
       tags:
       - Pages
+      operationId: getPagesByPageIdSubscribers
+      x-operation-id-source: derived
     post:
       summary: Create a subscriber
       requestBody:
@@ -343,6 +385,8 @@ paths:
           description: Subscriber created
       tags:
       - Pages
+      operationId: postPagesByPageIdSubscribers
+      x-operation-id-source: derived
   /pages/{page_id}/subscribers/{subscriber_id}:
     parameters:
     - in: path
@@ -362,6 +406,8 @@ paths:
           description: Subscriber
       tags:
       - Pages
+      operationId: getPagesByPageIdSubscribersBySubscriberId
+      x-operation-id-source: derived
     patch:
       summary: Update a subscriber
       requestBody:
@@ -375,6 +421,8 @@ paths:
           description: Updated subscriber
       tags:
       - Pages
+      operationId: patchPagesByPageIdSubscribersBySubscriberId
+      x-operation-id-source: derived
     delete:
       summary: Delete a subscriber
       responses:
@@ -382,6 +430,8 @@ paths:
           description: Deleted
       tags:
       - Pages
+      operationId: deletePagesByPageIdSubscribersBySubscriberId
+      x-operation-id-source: derived
   /pages/{page_id}/metrics:
     parameters:
     - in: path
@@ -396,6 +446,8 @@ paths:
           description: List of metrics
       tags:
       - Pages
+      operationId: getPagesByPageIdMetrics
+      x-operation-id-source: derived
     post:
       summary: Create a metric
       requestBody:
@@ -409,6 +461,8 @@ paths:
           description: Metric created
       tags:
       - Pages
+      operationId: postPagesByPageIdMetrics
+      x-operation-id-source: derived
   /pages/{page_id}/metrics/{metric_id}/data:
     parameters:
     - in: path
@@ -434,6 +488,8 @@ paths:
           description: Data submitted
       tags:
       - Pages
+      operationId: postPagesByPageIdMetricsByMetricIdData
+      x-operation-id-source: derived
 components:
   securitySchemes:
     ApiKey:

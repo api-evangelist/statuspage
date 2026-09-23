@@ -1,7 +1,7 @@
 {
   "provider": "statuspage",
   "sources": [
-    "statuspage-pages-api-openapi.yml"
+    "_original/statuspage-openapi.yml"
   ],
   "outputs": [
     "statuspage-pages-api-openapi.yml"
@@ -10,8 +10,41 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "statuspage-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "statuspage-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "statuspage-openapi.yml: tagged paths GET /pages -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths PATCH /pages/{page_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/components -> Pages",
+    "statuspage-openapi.yml: tagged paths POST /pages/{page_id}/components -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/components/{component_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths PATCH /pages/{page_id}/components/{component_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths DELETE /pages/{page_id}/components/{component_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/component-groups -> Pages",
+    "statuspage-openapi.yml: tagged paths POST /pages/{page_id}/component-groups -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/incidents -> Pages",
+    "statuspage-openapi.yml: tagged paths POST /pages/{page_id}/incidents -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/incidents/{incident_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths PATCH /pages/{page_id}/incidents/{incident_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths DELETE /pages/{page_id}/incidents/{incident_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/incidents/unresolved -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/incidents/scheduled -> Pages",
+    "statuspage-openapi.yml: tagged paths PATCH /pages/{page_id}/incidents/{incident_id}/incident_updates/{incident_update_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/maintenances -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/maintenances/active -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/maintenances/upcoming -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/subscribers -> Pages",
+    "statuspage-openapi.yml: tagged paths POST /pages/{page_id}/subscribers -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/subscribers/{subscriber_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths PATCH /pages/{page_id}/subscribers/{subscriber_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths DELETE /pages/{page_id}/subscribers/{subscriber_id} -> Pages",
+    "statuspage-openapi.yml: tagged paths GET /pages/{page_id}/metrics -> Pages",
+    "statuspage-openapi.yml: tagged paths POST /pages/{page_id}/metrics -> Pages",
+    "statuspage-openapi.yml: tagged paths POST /pages/{page_id}/metrics/{metric_id}/data -> Pages",
+    "statuspage-openapi.yml: declared missing tag: Pages",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "statuspage-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
