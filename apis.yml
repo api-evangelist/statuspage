@@ -42,6 +42,7 @@ tags:
 - Uptime
 - Reliability
 - Atlassian
+- Monitoring
 tags_raw:
 - Status Page
 - Incident Communication
@@ -49,6 +50,7 @@ tags_raw:
 - Uptime
 - Reliability
 - Atlassian
+- Monitoring
 url: https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/apis.yml
 created: '2026-05-11'
 modified: '2026-05-30'
@@ -75,8 +77,6 @@ apis:
     url: https://developer.statuspage.io/
   - type: Authentication
     url: https://support.atlassian.com/statuspage/docs/create-and-manage-api-keys/
-  - url: graphql/statuspage-graphql.md
-    type: GraphQL
 - aid: statuspage:status-api
   name: Statuspage Status API (v2)
   description: >-
