@@ -133,6 +133,8 @@ apis:
   - type: OpenAPI
     url: openapi/statuspage-pages-api-openapi.yml
 common:
+- type: VendorFacets
+  url: vendor-facets/statuspage-vendor-facets.yml
 - type: AgenticAccess
   url: agentic-access/statuspage-agentic-access.yml
 - type: TrustCenter

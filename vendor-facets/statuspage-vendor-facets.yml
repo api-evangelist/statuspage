@@ -1,0 +1,199 @@
+# Vendor facets — Atlassian Statuspage. A hosted status page product; on the Kin Score it touches one
+# pointer check, status_page_present (6 pts, operational_transparency), and it earns that check at full
+# credit because a Statuspage page, on *.statuspage.io or a custom domain, answers a nonsense path with a
+# real 404, so the pointer-liveness probe can prove the page exists. Everything else it ships (subscriber
+# webhooks, the public /api/v2 JSON, maintenance windows, uptime history) is real practice no check reads.
+vendor: statuspage
+name: Atlassian Statuspage
+website: https://www.atlassian.com/software/statuspage
+areas:
+- status-page
+registry_keys:
+- statuspage
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  Statuspage moves exactly one Kin Score check, status_page_present (6 of 38 operational-transparency
+  points), and only once the provider declares the page as a StatusPage in its apis.yml. It is one of
+  the vendors that earns that check cleanly: its hosted pages return a real 404 for unknown paths, so
+  the pointer probe grades the page live. 211 of 213 *.statuspage.io pointers in the catalog grade live
+  on the 2026-09-25 liveness pass. Subscriber webhooks, RSS, the public status JSON, maintenance windows
+  and uptime history are useful to integrators but score nothing, and a status page cannot supply a change
+  log, a deprecation policy or rate-limit documentation.
+features:
+- id: hosted-status-page
+  name: Hosted public status page (*.statuspage.io or custom domain)
+  description: >-
+    A component-based public status page with incidents, scheduled maintenance and uptime display, served
+    on a *.statuspage.io subdomain or a custom domain; a free plan exists and custom domains start at
+    the Hobby plan.
+  source: https://www.atlassian.com/software/statuspage/pricing
+  tier: all
+- id: soft-404-safe-hosting
+  name: Real 404 for unknown paths
+  description: >-
+    Probed 2026-09-25: acadio.statuspage.io and www.githubstatus.com (custom domain) return 200 for the
+    page and 404 for a nonsense path, so the host can be told apart from a catch-all shell.
+  source: https://acadio.statuspage.io
+  tier: all
+- id: page-types
+  name: Public, private and audience-specific pages
+  description: Private and audience-specific pages restrict who can view and who is notified.
+  source: https://support.atlassian.com/statuspage/docs/read-the-statuspage-user-guide/
+  tier: paid
+- id: scheduled-maintenance
+  name: Scheduled maintenance notices
+  description: Announce planned unavailability ahead of time on the page and to subscribers.
+  source: https://support.atlassian.com/statuspage/docs/read-the-statuspage-user-guide/
+  tier: all
+- id: system-metrics
+  name: System metrics and uptime display
+  description: Real-time response-time and uptime data shown per page, plus third-party components.
+  source: https://support.atlassian.com/statuspage/docs/read-the-statuspage-user-guide/
+  tier: all
+- id: status-embed
+  name: Status embed widget
+  description: Embeds current system status in the provider's own site, app or help center.
+  source: https://support.atlassian.com/statuspage/docs/read-the-statuspage-user-guide/
+  tier: all
+- id: subscriber-notifications
+  name: Subscriber notifications (email, SMS, Slack, Teams, webhook)
+  description: >-
+    End users subscribe to incident and component updates; SMS is paid-only and webhook notifications
+    start at the Startup plan for public pages.
+  source: https://support.atlassian.com/statuspage/docs/enable-subscribers/
+  tier: paid
+- id: subscriber-webhooks
+  name: Webhook notifications
+  description: HTTP POSTs to a subscriber's endpoint when an incident or component status changes.
+  source: https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
+  tier: paid
+- id: public-status-api
+  name: Public status JSON (/api/v2)
+  description: >-
+    Unauthenticated summary, status, components, incidents and scheduled-maintenance JSON endpoints under
+    the page's /api/v2/ path.
+  source: https://metastatuspage.com/api
+  tier: all
+- id: management-api
+  name: Statuspage management REST API with OpenAPI download
+  description: api.statuspage.io/v1 manages incidents, components and subscribers; an OpenAPI spec is
+    downloadable.
+  source: https://developer.statuspage.io/
+  tier: all
+maps:
+- feature: hosted-status-page
+  check: status_page_present
+  layer: composite
+  credit: 1.0
+  provider_must: >-
+    Declare the page in apis.yml as common[].type StatusPage. The pointer is liveness-graded: a Statuspage
+    URL grades live (1.0) because the host 404s unknown paths.
+  note: >-
+    Single full-credit row by construction — the check is binary and Statuspage clears the liveness probe.
+    The status-page area is a commodity on the Kin Score: this is the only check it touches.
+  catalog_pass_rate: 0.125
+  facet: operational_transparency
+  points: 6
+  baseline_pass_rate: 0.376
+earns_nothing:
+- feature: subscriber-webhooks
+  check: webhooks_advertised
+  why: >-
+    The check reads a Webhooks pointer for the provider's own API. Status notifications are the vendor's
+    event stream about the page, not an event surface of the API; declaring them as Webhooks would be
+    a mis-declaration.
+- feature: public-status-api
+  check: event_surface_described
+  why: >-
+    A polled JSON status document is neither an AsyncAPI document nor webhooks in the provider's OpenAPI;
+    nothing in the rubric reads it.
+out_of_reach:
+  checks:
+  - change_log_present
+  - deprecation_policy
+  - roadmap_present
+  - rate_limits_documented
+  - rate_limits_rich
+  note: >-
+    The rest of operational_transparency is authored content about the API itself; incident history is
+    not a change log and a status page cannot publish limits or a deprecation policy.
+unscored_practice:
+- feature: public-status-api
+  why: >-
+    Machine-readable current status (summary.json, components.json) is what an agent would actually poll
+    to tell "the API is down" from "my call is wrong"; no check or dimension reads it.
+- feature: scheduled-maintenance
+  why: Maintenance windows announced in advance; no check reads them.
+- feature: system-metrics
+  why: Component-level uptime history; no check reads published uptime.
+- feature: status-embed
+  why: In-product status surfacing; unscored.
+surface:
+  operational_transparency:
+    reachable: 6.0
+    total: 38
+  agent_readiness:
+    reachable: 0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://acadio.statuspage.io
+- https://developer.statuspage.io/
+- https://metastatuspage.com/api
+- https://support.atlassian.com/statuspage/docs/enable-subscribers/
+- https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/
+- https://support.atlassian.com/statuspage/docs/read-the-statuspage-user-guide/
+- https://www.atlassian.com/software/statuspage/pricing
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 0
+    in_baseline: 0
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5216
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 0 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 6390
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 2.0
+    p75: 2.1
+    p90: 2.1
+    max: 2.1
+    mean_among_movers: 1.9
+  agent_readiness_lift:
+    median: 0.0
+    p75: 0.0
+    p90: 0.0
+    max: 0.0
+    mean_among_movers: 0.0
+  facet_lift_median_among_movers:
+    operational_transparency: 15.8
+  composite_band_moves:
+    thin -> developing: 598
+    developing -> strong: 172
+    emerging -> thin: 158
+    strong -> exemplar: 43
+    minimal -> emerging: 1
+  agent_readiness_band_moves: {}
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
