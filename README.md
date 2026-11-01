@@ -1,4 +1,4 @@
-# Statuspage (statuspage)
+# Statuspage
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,107 +66,128 @@
 
 Statuspage by Atlassian is a hosted status page and incident communication platform that helps companies communicate real-time service status, incident updates, scheduled maintenance, and component health to customers and internal stakeholders. It supports public and private pages, audience-specific pages, subscriber notifications via email, SMS, webhooks, Slack, and Teams, and 150+ third-party component integrations. The Statuspage REST API provides programmatic access to pages, components, incidents, maintenances, metrics, subscribers, and users authenticated with an OAuth-prefixed API key.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/apis.yml)
+**Areas:** Status Pages · Incident Communication · Incident Management · Uptime · Reliability · Atlassian · Monitoring
 
-## Scope
+## Statuspage on APIs.io
 
-- **Type:** Index
+Everything profiled for Statuspage is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/statuspage/](https://apis.io/providers/statuspage/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Status Page
-- Incident Communication
-- Incident Management
-- Uptime
-- Reliability
-- Atlassian
+- [Statuspage Manage API](https://apis.io/apis/statuspage/manage-api/) — REST API for managing Statuspage pages, components, component groups, incidents, incident templates, scheduled maintenances, metrics, subscribers, users,…
+- [Statuspage Status API (v2)](https://apis.io/apis/statuspage/status-api/) — Public, read-only REST API exposed by every Statuspage at /api/v2 that returns current status, components, incidents, maintenances, and uptime data as JSON.…
+- [Statuspage Webhook Notifications](https://apis.io/apis/statuspage/webhooks/) — Outbound webhook notifications Statuspage POSTs to subscriber endpoints for component status changes, incident lifecycle updates, and scheduled maintenance…
+- [Statuspage Pages API](https://apis.io/apis/statuspage/statuspage-pages-api/) — The Pages API from Statuspage — 17 operation(s) for pages.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-11
-- **Modified:** 2026-05-30
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Statuspage Manage API
+Event-driven and webhook contracts.
 
-REST API for managing Statuspage pages, components, component groups, incidents, incident templates, scheduled maintenances, metrics, subscribers, users, and page access groups. Authentication uses an API key passed in the Authorization header with the literal "OAuth" prefix.
+- [Statuspage Webhook Notifications](https://apis.io/asyncapis/statuspage/statuspage-webhooks-asyncapi/)
 
-- **Human URL:** [https://developer.statuspage.io/](https://developer.statuspage.io/)
-- **Base URL:** `https://api.statuspage.io/v1`
+#### Event channels (1)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Management
-- Incidents
-- Components
-- Subscribers
-- Metrics
+- [/statuspage/webhook](https://apis.io/channels/statuspage/statuspage-webhook/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://developer.statuspage.io/)
-- [API Reference](https://developer.statuspage.io/)
-- [Authentication](https://support.atlassian.com/statuspage/docs/create-and-manage-api-keys/)
-- [Postman Collection](collections/statuspage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/statuspage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+GraphQL schemas.
 
-### Statuspage Status API (v2)
+- [Moved to /providers/statuspage/](https://apis.io/graphqls/statuspage/statuspage-graphql/)
 
-Public, read-only REST API exposed by every Statuspage at /api/v2 that returns current status, components, incidents, maintenances, and uptime data as JSON. Useful for embedding status data in applications.
+#### Agentic access (1)
 
-- **Human URL:** [https://doers.statuspage.io/api/v2/](https://doers.statuspage.io/api/v2/)
-- **Base URL:** `https://[page-id].statuspage.io/api/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Statuspage Agentic Access](https://apis.io/agentic-access/statuspage/statuspage-agentic-access/)
 
-- Status
-- Public
-- Read-Only
+#### Collections (2)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://doers.statuspage.io/api/v2/)
-- [Postman Collection](collections/statuspage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/statuspage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Statuspage REST API](https://apis.io/collections/statuspage/open-statuspage/)
+- [Statuspage REST Pages API](https://apis.io/collections/statuspage/open-statuspage-pages-api/)
 
-### Statuspage Webhook Notifications
+#### Governance rules (1)
 
-Outbound webhook notifications Statuspage POSTs to subscriber endpoints for component status changes, incident lifecycle updates, and scheduled maintenance lifecycle updates. Subscribers must respond with a 2xx status code within 30 seconds.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/](https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/)
+- [Statuspage — asyncapi rules](https://apis.io/rules/statuspage/statuspage-asyncapi-spectral-rules/)
 
-#### Tags
+#### Security (4)
 
-- Webhooks
-- Notifications
-- Incidents
-- Components
-- Scheduled Maintenance
-- Event-Driven
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Statuspage Authentication](https://apis.io/security/statuspage/statuspage-authentication/)
+- [Statuspage Domain Security](https://apis.io/security/statuspage/statuspage-domain-security/)
+- [Statuspage Trust Center](https://apis.io/security/statuspage/statuspage-trust-center/)
+- [Statuspage Vulnerability Disclosure](https://apis.io/security/statuspage/statuspage-vulnerability-disclosure/)
 
-- [Documentation](https://support.atlassian.com/statuspage/docs/enable-webhook-notifications/)
-- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/statuspage/refs/heads/main/asyncapi/statuspage-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/statuspage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/statuspage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [GitHub Organization](https://github.com/StatusPage)
-- [LinkedIn](https://www.linkedin.com/company/statuspage)
 - [Website](https://www.atlassian.com/software/statuspage)
-- [Developer  Portal](https://developer.statuspage.io/)
 - [Documentation](https://support.atlassian.com/statuspage/)
 - [Pricing](https://www.atlassian.com/software/statuspage/pricing)
-- [Sign Up](https://www.atlassian.com/software/statuspage/try)
-- [Login](https://manage.statuspage.io/login)
 - [Support](https://support.atlassian.com/statuspage/)
-- [Integrations](https://www.atlassian.com/software/statuspage/integrations)
-- [Parent  Company](https://www.atlassian.com/)
+- [GitHub](https://github.com/StatusPage)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 49.2 |
+| Contract governance | 11.4 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 42.9 |
+| Access clarity | 25.0 |
+
+**Agent readiness 18.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/statuspage/](https://apis.io/providers/statuspage/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Statuspage: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/statuspage/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
